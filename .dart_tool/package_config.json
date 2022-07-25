@@ -80,8 +80,20 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_screenutil",
+      "rootUri": "file:///Users/duong223/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_screenutil-5.5.3+2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///Users/duong223/Documents/flutter/packages/flutter_test",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "get_it",
+      "rootUri": "file:///Users/duong223/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/get_it-7.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -188,7 +200,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-07-21T06:48:23.241972Z",
+  "generated": "2022-07-25T04:21:25.909738Z",
   "generator": "pub",
   "generatorVersion": "2.16.2"
 }
