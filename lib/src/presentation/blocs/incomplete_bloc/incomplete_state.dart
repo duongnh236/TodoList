@@ -10,6 +10,6 @@ class IncompleteInitial extends IncompleteState {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [];
+  List<Object?> get props => [items];
 }
 

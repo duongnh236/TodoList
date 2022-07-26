@@ -6,6 +6,8 @@ import 'package:fluttertemplate/src/injection.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_state.dart';
 
+import '../../widgets/input_task_dialog.dart';
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
@@ -43,7 +45,9 @@ class MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMix
 
   @override
   void initState() {
-    // TODO: implement initState
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      context.read<HomeCubit>().getTodoItems();
+    });
     super.initState();
   }
   @override
@@ -51,13 +55,26 @@ class MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMix
     return Scaffold(
       appBar: AppBar(
         title: const Text("HomePage"),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return InputTaskDialog(tappedSave: (taskName) {
+                      context.read<HomeCubit>().createTask(taskName: taskName);
+                    });
+                  });
+            },
+            child: const Icon(Icons.add, color: Colors.white, size: 30),
+          ),
+        ],
       ),
       body: BlocBuilder<HomeCubit, HomeState>(builder: ( _, state) {
         if (state is HomeHandleStatusItemState ) {
           return Center(
             child: ListView.builder(itemBuilder: (BuildContext context, int index) {
               return _buildItem(state.items![index], (index) {
-                print(index);
                 context.read<HomeCubit>().handleTodoList(index: index);
               }, index);
             }, itemCount: state.items!.length),

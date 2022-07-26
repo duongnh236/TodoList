@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertemplate/src/data/source/local/local_datasource.dart';
 import 'package:fluttertemplate/src/injection.dart';
 import 'package:fluttertemplate/src/presentation/blocs/bottom_bar_bloc/bottom_bar_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/complete_bloc/complete_cubit.dart';
@@ -9,11 +10,11 @@ import 'package:fluttertemplate/src/presentation/blocs/incomplete_bloc/incomplet
 import 'package:fluttertemplate/src/presentation/ui/bottom_bar_page/bottom_bar_page.dart';
 import 'package:fluttertemplate/src/presentation/ui/home_page/home_page.dart';
 
-void main() {
+void main()  async {
 
   WidgetsFlutterBinding.ensureInitialized();
-   setup();
-
+  await setup();
+  await LocalDataSource.initialize();
   runApp(const MyApp());
 }
 

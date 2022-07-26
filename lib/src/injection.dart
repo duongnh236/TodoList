@@ -1,14 +1,27 @@
+import 'package:fluttertemplate/src/data/repositories_impl/home_repository_impl.dart';
+import 'package:fluttertemplate/src/domain/user_case/home_usercase/home_usercase.dart';
 import 'package:fluttertemplate/src/presentation/blocs/bottom_bar_bloc/bottom_bar_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/complete_bloc/complete_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/incomplete_bloc/incomplete_cubit.dart';
 import 'package:get_it/get_it.dart';
 
-final getIt = GetIt.instance;
-void setup() async {
+import 'data/source/local/local_datasource.dart';
+
+final GetIt getIt = GetIt.instance;
+Future<void> setup() async {
   getIt.registerSingleton<BottomBarCubit>(BottomBarCubit());
-  getIt.registerSingleton<HomeCubit>(HomeCubit());
+
+  /// Home
+  getIt.registerSingleton<LocalDataSource>(LocalDataSource());
+  getIt.registerSingleton<HomeRepositoryImpl>(HomeRepositoryImpl(getIt.get<LocalDataSource>()));
+  getIt.registerSingleton<HomeUserCase>(HomeUserCase(getIt.get<HomeRepositoryImpl>()));
+  getIt.registerSingleton<HomeCubit>(HomeCubit(getIt.get<HomeUserCase>()));
+
+  /// Incomplete
   getIt.registerSingleton<IncompleteCubit>(IncompleteCubit());
+
+  /// Complete
   getIt.registerSingleton<CompleteCubit>(CompleteCubit());
 
 }
