@@ -6,6 +6,7 @@ import 'package:fluttertemplate/src/injection.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_state.dart';
 
+import '../../widgets/error_widget_dialog.dart';
 import '../../widgets/input_task_dialog.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -70,19 +71,23 @@ class MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMix
           ),
         ],
       ),
-      body: BlocBuilder<HomeCubit, HomeState>(builder: ( _, state) {
-        if (state is HomeHandleStatusItemState ) {
-          return Center(
-            child: ListView.builder(itemBuilder: (BuildContext context, int index) {
-              return _buildItem(state.items![index], (index) {
-                context.read<HomeCubit>().handleTodoList(index: index);
-              }, index);
-            }, itemCount: state.items!.length),
-          );
-        } else  {
-          return Container();
-        }
-      }, bloc: getIt.get<HomeCubit>()), // This trailing comma makes auto-formatting nicer for build methods.
+      body: BlocConsumer<HomeCubit, HomeState>(
+        listenWhen: (previous, current) => current is HomeErrorState,
+        listener: (context , state) {
+            showDialog(context: context, builder: (BuildContext context) {
+              return const ErrorDialog();
+            });
+        },
+        builder: ( _, state) {
+            return Center(
+              child: ListView.builder(itemBuilder: (BuildContext context, int index) {
+                return _buildItem(state.items![index], (index) {
+                  context.read<HomeCubit>().handleTodoList(index: index);
+                }, index);
+              }, itemCount: state.items != null ?  state.items!.length : 0),
+            );
+        },
+      ) // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
   @override

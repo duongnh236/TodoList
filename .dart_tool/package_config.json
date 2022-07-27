@@ -308,6 +308,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "mockito",
+      "rootUri": "file:///Users/duong223/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/mockito-5.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "nested",
       "rootUri": "file:///Users/duong223/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/nested-1.0.0",
       "packageUri": "lib/",
@@ -536,7 +542,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-07-26T04:28:02.595940Z",
+  "generated": "2022-07-27T03:16:07.859650Z",
   "generator": "pub",
   "generatorVersion": "2.16.2"
 }

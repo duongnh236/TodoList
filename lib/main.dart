@@ -14,7 +14,7 @@ void main()  async {
 
   WidgetsFlutterBinding.ensureInitialized();
   await setup();
-  await LocalDataSource.initialize();
+  await getIt.get<LocalDataSource>().initialize();
   runApp(const MyApp());
 }
 

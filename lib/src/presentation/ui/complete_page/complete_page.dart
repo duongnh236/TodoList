@@ -42,7 +42,7 @@ class _CompletePageState extends State<CompletePage> with AutomaticKeepAliveClie
 
   @override
   void initState() {
-    final List<ToDoItemEntity> _items = context.read<HomeCubit>().items ?? [];
+    final List<ToDoItemEntity> _items = context.read<HomeCubit>().items;
     context.read<CompleteCubit>().getItems(items: _items);
     super.initState();
   }

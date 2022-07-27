@@ -46,7 +46,7 @@ class _InCompletePageState extends State<InCompletePage> {
 
   @override
   void initState() {
-    final List<ToDoItemEntity> _items = context.read<HomeCubit>().items ?? [];
+    final List<ToDoItemEntity> _items = context.read<HomeCubit>().items;
     context.read<IncompleteCubit>().getItems(items: _items);
     super.initState();
   }

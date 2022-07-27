@@ -7,14 +7,17 @@ import 'package:path_provider/path_provider.dart';
 import 'models/todo_item.dart';
 
 class LocalDataSource {
-  static Future<void> initialize() async {
+  HiveInterface hiveInterface;
+  LocalDataSource(this.hiveInterface);
+
+  Future<void> initialize() async {
     Directory tempDir = await getTemporaryDirectory();
     String tempPath = tempDir.path;
 
-    Hive.init(tempPath);
-    Hive.registerAdapter<TodoItemHive>(TodoItemHiveAdapter());
+    hiveInterface.init(tempPath);
+    hiveInterface.registerAdapter<TodoItemHive>(TodoItemHiveAdapter());
 
-    await Hive.openBox<TodoItemHive>(TodoItemHive.boxKey);
+    await hiveInterface.openBox<TodoItemHive>(TodoItemHive.boxKey);
   }
 
   bool hasData() {
