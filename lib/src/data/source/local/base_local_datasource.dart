@@ -66,9 +66,9 @@ abstract class BaseLocalDataSource<TableType, ModelType> {
     return box.toMap().values.toList();
   }
 
-  Future<List<TableType>> getAt() async {
+  Future<TableType?> getAt(int index) async {
     final Box<TableType> box = await _openBox();
-    return box.toMap().values.toList();
+    return box.getAt(index);
   }
 
   Future<void> put(String key, TableType value) async {
