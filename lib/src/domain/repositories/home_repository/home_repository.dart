@@ -1,7 +1,7 @@
 import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
 
 abstract class HomeRepository {
-  List<ToDoItemEntity> getTodoItemsLocal();
-  bool saveTodoItemsLocal(List<ToDoItemEntity> items);
-  bool isHasData();
+  Future<List<ToDoItemEntity>> getTodoItemsLocal();
+  Future<bool> saveTodoItemsLocal(List<ToDoItemEntity> items);
+  Future<bool> isHasData();
 }

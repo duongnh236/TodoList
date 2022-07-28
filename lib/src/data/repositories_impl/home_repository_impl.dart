@@ -8,23 +8,23 @@ class HomeRepositoryImpl extends HomeRepository {
   final LocalDataSource localDataSource;
 
   @override
-  List<ToDoItemEntity> getTodoItemsLocal() {
-    final List<TodoItemHive> todoItemsHive =  localDataSource.getAllTodoItems();
+  Future<List<ToDoItemEntity>> getTodoItemsLocal() async {
+    final List<TodoItemHive> todoItemsHive =  await localDataSource.getAllTodoItems();
     final List<ToDoItemEntity> todoEntities = todoItemsHive.map((e) => ToDoItemEntity(name: e.name, isChecked: e.isChecked)).toList();
     return todoEntities;
   }
 
   @override
-  bool saveTodoItemsLocal(List<ToDoItemEntity> items)  {
+  Future<bool> saveTodoItemsLocal(List<ToDoItemEntity> items) async  {
     final List<TodoItemHive> itemsHive = items.map((e) => TodoItemHive()..isChecked = e.isChecked
                                                                         ..name = e.name).toList();
-    localDataSource.saveTodoItems(itemsHive);
-    return true;
+    await localDataSource.saveTodoItems(itemsHive);
+    return Future.value(true);
   }
 
   @override
-  bool isHasData() {
-    return localDataSource.hasData();
+  Future<bool> isHasData() async {
+    return await localDataSource.hasData();
   }
 
 }

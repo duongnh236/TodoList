@@ -6,13 +6,13 @@ class HomeUseCase {
   HomeUseCase(this.homeRepository);
   final HomeRepository homeRepository;
 
-  List<ToDoItemEntity> getTodoItemsLocal() {
-    return homeRepository.getTodoItemsLocal();
+  Future<List<ToDoItemEntity>> getTodoItemsLocal() async {
+    return await homeRepository.getTodoItemsLocal();
   }
-  bool saveTodoItemsLocal(List<ToDoItemEntity> items) {
-    return homeRepository.saveTodoItemsLocal(items);
+  Future<bool> saveTodoItemsLocal(List<ToDoItemEntity> items) async {
+    return await homeRepository.saveTodoItemsLocal(items);
   }
-  bool isHasData() {
-    return homeRepository.isHasData();
+  Future<bool> isHasData() async {
+    return await homeRepository.isHasData();
   }
 }

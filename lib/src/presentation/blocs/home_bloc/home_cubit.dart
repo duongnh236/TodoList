@@ -10,17 +10,17 @@ class HomeCubit extends Cubit<HomeState> {
 
   List<ToDoItemEntity> items = [];
 
-  void getTodoItems() {
-    if (isHasData()) {
-      items = homeUserCase.getTodoItemsLocal();
+  Future<void> getTodoItems() async {
+    if (await isHasData()) {
+      items = await homeUserCase.getTodoItemsLocal();
     } else {
       items = [];
     }
     emit(HomeHandleStatusItemState(items));
   }
-  void handleTodoList({int? index}) {
+  Future<void> handleTodoList({int? index}) async {
     items[index ?? 0].isChecked = !items[index ?? 0].isChecked!;
-    final bool isSave = homeUserCase.saveTodoItemsLocal(items);
+    final bool isSave = await homeUserCase.saveTodoItemsLocal(items);
     if (isSave) {
       emit(HomeHandleStatusItemState(items));
     } else {
@@ -28,17 +28,17 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  void createTask({String? taskName}) {
+  Future<void> createTask({String? taskName}) async {
     final ToDoItemEntity todoTask = ToDoItemEntity(isChecked: false, name: taskName ?? '');
     items.add(todoTask);
-    final bool isSave = homeUserCase.saveTodoItemsLocal(items);
+    final bool isSave = await homeUserCase.saveTodoItemsLocal(items);
     if (isSave) {
       emit(HomeHandleStatusItemState(items));
     } else {
       emit(HomeErrorState('please try again', items));
     }
   }
-  bool isHasData() {
-    return homeUserCase.isHasData();
+  Future<bool> isHasData() async {
+    return await homeUserCase.isHasData();
   }
 }

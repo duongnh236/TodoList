@@ -2,8 +2,10 @@
 // in fluttertemplate/test/home_cubit_test.dart.
 // Do not manually edit this file.
 
+import 'dart:async' as _i4;
+
 import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart'
-    as _i4;
+    as _i5;
 import 'package:fluttertemplate/src/domain/repositories/home_repository/home_repository.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
@@ -35,15 +37,16 @@ class MockMockHomeUseCase extends _i1.Mock implements _i3.MockHomeUseCase {
       (super.noSuchMethod(Invocation.getter(#homeRepository),
           returnValue: _FakeHomeRepository_0()) as _i2.HomeRepository);
   @override
-  List<_i4.ToDoItemEntity> getTodoItemsLocal() =>
+  _i4.Future<List<_i5.ToDoItemEntity>> getTodoItemsLocal() =>
       (super.noSuchMethod(Invocation.method(#getTodoItemsLocal, []),
-          returnValue: <_i4.ToDoItemEntity>[]) as List<_i4.ToDoItemEntity>);
+          returnValue: Future<List<_i5.ToDoItemEntity>>.value(
+              <_i5.ToDoItemEntity>[])) as _i4.Future<List<_i5.ToDoItemEntity>>);
   @override
-  bool saveTodoItemsLocal(List<_i4.ToDoItemEntity>? items) =>
+  _i4.Future<bool> saveTodoItemsLocal(List<_i5.ToDoItemEntity>? items) =>
       (super.noSuchMethod(Invocation.method(#saveTodoItemsLocal, [items]),
-          returnValue: false) as bool);
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
-  bool isHasData() =>
-      (super.noSuchMethod(Invocation.method(#isHasData, []), returnValue: false)
-          as bool);
+  _i4.Future<bool> isHasData() =>
+      (super.noSuchMethod(Invocation.method(#isHasData, []),
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
 }

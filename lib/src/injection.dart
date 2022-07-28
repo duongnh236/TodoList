@@ -15,7 +15,7 @@ Future<void> setup() async {
 
   /// Home
 
-  getIt.registerSingleton<LocalDataSource>(LocalDataSource(Hive));
+  getIt.registerSingleton<LocalDataSource>(LocalDataSource());
   getIt.registerSingleton<HomeRepositoryImpl>(HomeRepositoryImpl(getIt.get<LocalDataSource>()));
   getIt.registerSingleton<HomeUseCase>(HomeUseCase(getIt.get<HomeRepositoryImpl>()));
   getIt.registerSingleton<HomeCubit>(HomeCubit(getIt.get<HomeUseCase>()));

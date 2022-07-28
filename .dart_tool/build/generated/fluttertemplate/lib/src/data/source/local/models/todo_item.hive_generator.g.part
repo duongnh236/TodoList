@@ -12,9 +12,10 @@ class TodoItemHiveAdapter extends TypeAdapter<TodoItemHive> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return TodoItemHive()
-      ..name = fields[0] as String?
-      ..isChecked = fields[1] as bool?;
+    return TodoItemHive(
+      isChecked: fields[1] as bool?,
+      name: fields[0] as String?,
+    );
   }
 
   @override

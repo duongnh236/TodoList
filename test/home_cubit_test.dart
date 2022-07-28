@@ -31,39 +31,39 @@ void main() {
   });
 
   group('homeCubit test getTodoItemsLocal()', () {
-    test('Should call getTodoItemsLocal when isHasData return true', () {
-      when(mockHomeUseCase.isHasData()).thenReturn(true);
-      when(mockHomeUseCase.getTodoItemsLocal()).thenReturn([
+    test('Should call getTodoItemsLocal when isHasData return true', () async {
+      when(mockHomeUseCase.isHasData()).thenAnswer((_) => Future.value(true));
+      when(mockHomeUseCase.getTodoItemsLocal()).thenAnswer((realInvocation) => Future.value([
         ToDoItemEntity(isChecked: true, name: 'aaa'),
         ToDoItemEntity(isChecked: true, name: 'bbb')
-      ]);
-      homeCubit.getTodoItems();
+      ]));
+      await homeCubit.getTodoItems();
       expect(homeCubit.items.length, 2);
       expect(homeCubit.state.runtimeType, HomeHandleStatusItemState);
     });
 
-    test('Should call getTodoItemsLocal when isHasData return false', () {
-      when(mockHomeUseCase.isHasData()).thenReturn(false);
-      when(mockHomeUseCase.getTodoItemsLocal()).thenReturn([
+    test('Should call getTodoItemsLocal when isHasData return false', () async {
+      when(mockHomeUseCase.isHasData()).thenAnswer((_) => Future.value(false));
+      when(mockHomeUseCase.getTodoItemsLocal()).thenAnswer((realInvocation) => Future.value([
         ToDoItemEntity(isChecked: true, name: 'aaa'),
         ToDoItemEntity(isChecked: true, name: 'bbb')
-      ]);
-      homeCubit.getTodoItems();
+      ]));
+      await homeCubit.getTodoItems();
       expect(homeCubit.items.length, 0);
       expect(homeCubit.state.runtimeType, HomeHandleStatusItemState);
     });
   });
   group('homeCubit test createTask()', () {
-    test('Should call createTask when isSave return true', () {
-      when(mockHomeUseCase.saveTodoItemsLocal(any)).thenReturn(true);
-      homeCubit.createTask(taskName: 'eqqq');
+    test('Should call createTask when isSave return true', () async {
+      when(mockHomeUseCase.saveTodoItemsLocal(any)).thenAnswer((_) => Future.value(true));
+      await homeCubit.createTask(taskName: 'eqqq');
       expect(homeCubit.state.runtimeType, HomeHandleStatusItemState);
       verify(mockHomeUseCase.saveTodoItemsLocal(any)).called(1);
     });
 
-    test('Should call createTask when saveTodoItemsLocal return false', () {
-      when(mockHomeUseCase.saveTodoItemsLocal(any)).thenReturn(false);
-      homeCubit.createTask(taskName: 'eqqq');
+    test('Should call createTask when saveTodoItemsLocal return false', () async {
+      when(mockHomeUseCase.saveTodoItemsLocal(any)).thenAnswer((_) => Future.value(false));
+      await homeCubit.createTask(taskName: 'eqqq');
       expect(homeCubit.state.runtimeType, HomeErrorState);
       verify(mockHomeUseCase.saveTodoItemsLocal(any)).called(1);
     });
@@ -71,25 +71,28 @@ void main() {
 
   group('homeCubit test handleTodoList()', () {
 
-    test('Should call handleTodoList when homeUserCase.saveTodoItemsLocal return true', () {
-      when(mockHomeUseCase.saveTodoItemsLocal(any)).thenReturn(true);
-      homeCubit.handleTodoList(index: 0);
+    test('Should call handleTodoList when homeUserCase.saveTodoItemsLocal return true', () async {
+      when(mockHomeUseCase.saveTodoItemsLocal(any)).thenAnswer((_) => Future.value(true));
+      await homeCubit.handleTodoList(index: 0);
       expect(homeCubit.state.runtimeType, HomeHandleStatusItemState);
       verify(mockHomeUseCase.saveTodoItemsLocal(any)).called(1);
     });
 
-    test('Should call handleTodoList when homeUserCase.saveTodoItemsLocal return false', () {
-      when(mockHomeUseCase.saveTodoItemsLocal(any)).thenReturn(false);
-      homeCubit.handleTodoList(index: 0);
+    test('Should call handleTodoList when homeUserCase.saveTodoItemsLocal return false', () async {
+      when(mockHomeUseCase.saveTodoItemsLocal(any)).thenAnswer((_) => Future.value(false));
+      await homeCubit.handleTodoList(index: 0);
       expect(homeCubit.state.runtimeType, HomeErrorState);
       verify(mockHomeUseCase.saveTodoItemsLocal(any)).called(1);
     });
 
-    test('Should call handleTodoList when pass index: 0 return isChecked false', () {
-      when(mockHomeUseCase.saveTodoItemsLocal(any)).thenReturn(false);
-      homeCubit.handleTodoList(index: 0);
+    test('Should call handleTodoList when pass index: 0 return isChecked false', () async {
+      when(mockHomeUseCase.saveTodoItemsLocal(any)).thenAnswer((_) => Future.value(false));
+      await homeCubit.handleTodoList(index: 0);
       expect(homeCubit.items[0].isChecked, false);
     });
 
   });
+
+
+
 }

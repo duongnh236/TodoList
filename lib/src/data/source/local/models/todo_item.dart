@@ -3,6 +3,7 @@ part 'todo_item.g.dart';
 
 @HiveType(typeId: 1)
 class TodoItemHive extends HiveObject {
+  TodoItemHive({this.isChecked, this.name});
   static const String boxKey = 'todoItem';
 
   @HiveField(0)
