@@ -19,10 +19,12 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeHandleStatusItemState(items));
   }
   Future<void> handleTodoList({int? index}) async {
-    items[index ?? 0].isChecked = !items[index ?? 0].isChecked!;
+    final _list = List.of(items);
+    // items[index ?? 0].isChecked = !items[index ?? 0].isChecked!;
+    _list[index ?? 0].isChecked = !_list[index ?? 0].isChecked!;
     final bool isSave = await homeUserCase.saveTodoItemsLocal(items);
     if (isSave) {
-      emit(HomeHandleStatusItemState(items));
+      emit(HomeHandleStatusItemState(_list));
     } else {
       emit(HomeErrorState('please try again', items));
     }

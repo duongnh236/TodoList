@@ -1,3 +1,4 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
 import 'package:fluttertemplate/src/domain/use_case/home_usecase/home_usercase.dart';
@@ -93,6 +94,17 @@ void main() {
 
   });
 
-
+group('test HomeCubit', () {
+  final List<ToDoItemEntity> itemsResponse = [ToDoItemEntity(isChecked: true, name: 'aaa')];
+  blocTest<HomeCubit, HomeState>('Should call getTodoItemsLocal return value', build: () {
+    when(mockHomeUseCase.isHasData()).thenAnswer((_) async => true);
+    when(mockHomeUseCase.getTodoItemsLocal()).thenAnswer((_)  async => itemsResponse);
+    return HomeCubit(mockHomeUseCase);
+  }, act: (cubit) => cubit.getTodoItems(),
+      expect: () => [
+        isA<HomeHandleStatusItemState>(),
+        // HomeHandleStatusItemState([ToDoItemEntity(isChecked: true, name: 'aaa')])
+      ]);
+});
 
 }
