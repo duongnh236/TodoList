@@ -26,7 +26,7 @@ class _BottomBarPageState extends State<BottomBarPage> {
       case 1:
         return const CompletePage();
       default:
-        return InCompletePage();
+        return const InCompletePage();
     }
   }
 
@@ -34,7 +34,6 @@ class _BottomBarPageState extends State<BottomBarPage> {
   Widget build(BuildContext context) {
     return Scaffold(
        body: BlocBuilder<BottomBarCubit, BottomBarState>(
-         bloc: getIt.get<BottomBarCubit>(),
            builder: (_, state) {
          if (state is BottomBarIndexState) {
            return _buildBody(index: state.index ?? 0);
@@ -43,12 +42,13 @@ class _BottomBarPageState extends State<BottomBarPage> {
          }
        }),
       bottomNavigationBar: BottomNavigationBar(
+        key: const Key('BottomNavigationBar'),
         type: BottomNavigationBarType.fixed,
         currentIndex: context.watch<BottomBarCubit>().indexSelected ?? 0,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Container(), label: "Home"),
-          BottomNavigationBarItem(icon: Container(), label: "Complete"),
-          BottomNavigationBarItem(icon: Container(), label: "InComplete"),
+          BottomNavigationBarItem(icon: Container(key: const Key('BottomNavigationBarItem-Home'),), label: "Home"),
+          BottomNavigationBarItem(icon: Container(key: const Key('BottomNavigationBarItem-Complete')), label: "Complete"),
+          BottomNavigationBarItem(icon: Container(key: const Key('BottomNavigationBarItem-InComplete')), label: "InComplete"),
         ],
         onTap: (int index) {
           context.read<BottomBarCubit>().changeIndex(index: index);

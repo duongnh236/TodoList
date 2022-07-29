@@ -28,6 +28,7 @@ class _InputTaskDialogState extends State<InputTaskDialog> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextField(
+                key: const Key('Textfield-input'),
                 controller: _textEditingController,
                 decoration:  InputDecoration(
                   errorText: isErrorText ? 'Please Input Task Name' : null,
@@ -43,6 +44,7 @@ class _InputTaskDialogState extends State<InputTaskDialog> {
               ),
               const SizedBox(height: 20),
               Container(
+                key: const Key('Button-Input'),
                 width: 320.0,
                 decoration: const BoxDecoration(
                   color: Colors.transparent

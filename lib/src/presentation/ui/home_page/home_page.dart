@@ -37,7 +37,6 @@ class MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMix
               color: toDoItemEntity.isChecked ?? false ?  Colors.blue : Colors.blue,
             ),
           )
-
         ],
       ),
     );
@@ -55,16 +54,18 @@ class MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMix
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        key: const Key('AppBar-HomePage'),
         title: const Text("HomePage"),
         actions: <Widget>[
           TextButton(
+            key: const Key('TextButton-HomePage'),
             onPressed: () {
               showDialog(
                   context: context,
                   builder: (BuildContext context) {
                     return InputTaskDialog(tappedSave: (taskName) {
                       context.read<HomeCubit>().createTask(taskName: taskName);
-                    });
+                    }, key: const Key('InputTaskDialog-HomePage'),);
                   });
             },
             child: const Icon(Icons.add, color: Colors.white, size: 30),
@@ -75,7 +76,7 @@ class MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMix
         listenWhen: (previous, current) => current is HomeErrorState,
         listener: (context , state) {
             showDialog(context: context, builder: (BuildContext context) {
-              return const ErrorDialog();
+              return const ErrorDialog(key: Key('ErrorDialog-HomePage'));
             });
         },
         builder: ( _, state) {
@@ -84,7 +85,7 @@ class MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMix
                 return _buildItem(state.items![index], (index) {
                   context.read<HomeCubit>().handleTodoList(index: index);
                 }, index);
-              }, itemCount: state.items != null ?  state.items!.length : 0),
+              }, itemCount: state.items != null ?  state.items!.length : 0, key: const Key('ListView-HomePage')),
             );
         },
       ) // This trailing comma makes auto-formatting nicer for build methods.

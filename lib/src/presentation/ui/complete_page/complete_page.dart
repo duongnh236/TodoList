@@ -50,6 +50,7 @@ class _CompletePageState extends State<CompletePage> with AutomaticKeepAliveClie
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        key: const Key('AppBar-CompletePage'),
         title: const Text("Complete"),
       ),
       body: BlocBuilder<CompleteCubit, CompleteState>(builder: ( _, state) {
@@ -59,6 +60,7 @@ class _CompletePageState extends State<CompletePage> with AutomaticKeepAliveClie
               return _buildItem(state.items![index], (index) {
               }, index);
             }, itemCount: state.items!.length),
+            key: const Key('ListView-CompletePage'),
           );
         } else  {
           return Container();

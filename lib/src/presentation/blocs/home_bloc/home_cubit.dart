@@ -4,15 +4,15 @@ import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_state.dart
 import '../../../domain/entities/todo_item_entity.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit(this.homeUserCase) : super(HomeInitialState());
+  HomeCubit(this.homeUseCase) : super(HomeInitialState());
 
-  final HomeUseCase homeUserCase;
+  final HomeUseCase homeUseCase;
 
   List<ToDoItemEntity> items = [];
 
   Future<void> getTodoItems() async {
     if (await isHasData()) {
-      items = await homeUserCase.getTodoItemsLocal();
+      items = await homeUseCase.getTodoItemsLocal();
     } else {
       items = [];
     }
@@ -20,7 +20,7 @@ class HomeCubit extends Cubit<HomeState> {
   }
   Future<void> handleTodoList({int? index}) async {
     items[index ?? 0].isChecked = !items[index ?? 0].isChecked!;
-    final bool isSave = await homeUserCase.saveTodoItemsLocal(items);
+    final bool isSave = await homeUseCase.saveTodoItemsLocal(items);
     if (isSave) {
       emit(HomeHandleStatusItemState(items));
     } else {
@@ -31,7 +31,7 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> createTask({String? taskName}) async {
     final ToDoItemEntity todoTask = ToDoItemEntity(isChecked: false, name: taskName ?? '');
     items.add(todoTask);
-    final bool isSave = await homeUserCase.saveTodoItemsLocal(items);
+    final bool isSave = await homeUseCase.saveTodoItemsLocal(items);
     if (isSave) {
       emit(HomeHandleStatusItemState(items));
     } else {
@@ -39,6 +39,6 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
   Future<bool> isHasData() async {
-    return await homeUserCase.isHasData();
+    return await homeUseCase.isHasData();
   }
 }

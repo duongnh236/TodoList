@@ -55,6 +55,7 @@ class _InCompletePageState extends State<InCompletePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        key: const Key('AppBar-InCompletePage'),
         title: const Text("InComplete"),
       ),
       body: BlocBuilder<IncompleteCubit, IncompleteState>(builder: ( _, state) {
@@ -64,6 +65,7 @@ class _InCompletePageState extends State<InCompletePage> {
               return _buildItem(state.items![index], (index) {
               }, index);
             }, itemCount: state.items!.length),
+            key: const Key('ListView-InCompletePage'),
           );
         } else  {
           return Container();
