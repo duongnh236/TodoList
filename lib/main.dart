@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertemplate/src/core/utils/local_database_util.dart';
 import 'package:fluttertemplate/src/data/source/local/local_datasource.dart';
@@ -10,6 +11,8 @@ import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_cubit.dart
 import 'package:fluttertemplate/src/presentation/blocs/incomplete_bloc/incomplete_cubit.dart';
 import 'package:fluttertemplate/src/presentation/ui/bottom_bar_page/bottom_bar_page.dart';
 import 'package:fluttertemplate/src/presentation/ui/home_page/home_page.dart';
+
+import 'generated/l10n.dart';
 
 Future<void> main()  async {
 
@@ -32,13 +35,19 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (BuildContext context) => getIt.get<HomeCubit>()),
         BlocProvider(create: (BuildContext context) => getIt.get<IncompleteCubit>()),
         BlocProvider(create: (BuildContext context) => getIt.get<CompleteCubit>())
-
       ],
       child: ScreenUtilInit(
           designSize: const Size(375, 812),
           builder: (context, widget) {
             return MaterialApp(
-              title: 'Flutter Demo',
+              localizationsDelegates: const [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: S.delegate.supportedLocales,
+              locale: const Locale('vi'),
               theme: ThemeData(
                 primarySwatch: Colors.blue,
               ),

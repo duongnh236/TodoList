@@ -1,0 +1,14 @@
+{
+
+  "@@locale" : "en",
+
+  "appName" : "TodoList App",
+
+  "helloWorld": "Welcome {lastName} {firstName}",
+  "@pageHomeWelcomeFullName": {
+    "placeholders": {
+      "firstName": {},
+      "lastName": {}
+    }
+  }
+}

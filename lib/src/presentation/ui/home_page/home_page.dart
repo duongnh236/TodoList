@@ -6,6 +6,7 @@ import 'package:fluttertemplate/src/injection.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_state.dart';
 
+import '../../../../generated/l10n.dart';
 import '../../widgets/error_widget_dialog.dart';
 import '../../widgets/input_task_dialog.dart';
 
@@ -55,11 +56,15 @@ class MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMix
     return Scaffold(
       appBar: AppBar(
         key: const Key('AppBar-HomePage'),
-        title: const Text("HomePage"),
+        title:  Text(S.of(context).helloWorld('Dương', 'Nguyễn Hải ')),
         actions: <Widget>[
           TextButton(
             key: const Key('TextButton-HomePage'),
-            onPressed: () {
+            onPressed: () async {
+              await S.load(const Locale('en'));
+              setState(()  {
+
+              });
               showDialog(
                   context: context,
                   builder: (BuildContext context) {
