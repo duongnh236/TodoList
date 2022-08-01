@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-
 import '../../../domain/entities/todo_item_entity.dart';
 
 abstract class CompleteState extends Equatable {}

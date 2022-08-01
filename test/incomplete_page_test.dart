@@ -2,10 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:fluttertemplate/src/presentation/blocs/complete_bloc/complete_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/incomplete_bloc/incomplete_cubit.dart';
-import 'package:fluttertemplate/src/presentation/ui/complete_page/complete_page.dart';
 import 'package:fluttertemplate/src/presentation/ui/incomplete_page/incomplete_page.dart';
 
 import 'home_cubit_test.mocks.dart';

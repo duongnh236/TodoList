@@ -8,7 +8,6 @@ import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_cubit.dart
 import 'package:fluttertemplate/src/presentation/ui/home_page/home_page.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
 import 'home_cubit_test.mocks.dart';
 
 class MockHomeUseCase extends Mock implements HomeUseCase {}

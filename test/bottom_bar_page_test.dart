@@ -9,7 +9,6 @@ import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_cubit.dart
 import 'package:fluttertemplate/src/presentation/blocs/incomplete_bloc/incomplete_cubit.dart';
 import 'package:fluttertemplate/src/presentation/ui/bottom_bar_page/bottom_bar_page.dart';
 import 'package:mockito/mockito.dart';
-
 import 'home_cubit_test.mocks.dart';
 
 

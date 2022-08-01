@@ -2,10 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
-import 'package:fluttertemplate/src/injection.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_state.dart';
-
 import '../../../../generated/l10n.dart';
 import '../../widgets/error_widget_dialog.dart';
 import '../../widgets/input_task_dialog.dart';

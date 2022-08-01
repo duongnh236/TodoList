@@ -97,6 +97,5 @@ void main() {
 
         expect(result?.name, 'a');
       });
-
     });
 }

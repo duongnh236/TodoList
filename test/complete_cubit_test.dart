@@ -3,8 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
 import 'package:fluttertemplate/src/presentation/blocs/complete_bloc/complete_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/complete_bloc/complete_state.dart';
-import 'package:fluttertemplate/src/presentation/blocs/incomplete_bloc/incomplete_cubit.dart';
-import 'package:fluttertemplate/src/presentation/blocs/incomplete_bloc/incomplete_state.dart';
 
 void main() {
   late CompleteCubit completeCubit;
