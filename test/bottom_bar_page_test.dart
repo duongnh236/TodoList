@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fluttertemplate/generated/l10n.dart';
 import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
 import 'package:fluttertemplate/src/presentation/blocs/bottom_bar_bloc/bottom_bar_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/complete_bloc/complete_cubit.dart';
@@ -23,6 +25,17 @@ void main() {
 
   Widget createTestWidget() {
     return MaterialApp(
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
+        locale: const Locale('vi'),
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
         home: MultiBlocProvider(
           providers: [
             BlocProvider(create: (BuildContext context) => BottomBarCubit()),
@@ -38,6 +51,7 @@ void main() {
   testWidgets('test CompletePage', (tester) async {
 
     await tester.pumpWidget(createTestWidget());
+    await tester.pumpAndSettle();
 
     final bottomNavigationBar = find.byKey(const Key('BottomNavigationBar'));
     final bottomNavigationBarItemHome = find.byKey(const Key('BottomNavigationBarItem-Home'));
@@ -53,6 +67,7 @@ void main() {
   testWidgets('Should click BottomNavigationItem navigate to HomePage', (tester) async {
 
     await tester.pumpWidget(createTestWidget());
+    await tester.pumpAndSettle();
 
     await tester.tap(find.text('Home'));
     await tester.pump();
@@ -65,6 +80,7 @@ void main() {
   testWidgets('Should click BottomNavigationItem navigate to InComplete', (tester) async {
 
     await tester.pumpWidget(createTestWidget());
+    await tester.pumpAndSettle();
 
     await tester.tap(find.text('InComplete'));
     await tester.pump();
@@ -77,6 +93,7 @@ void main() {
   testWidgets('Should click BottomNavigationItem navigate to CompletePage', (tester) async {
 
     await tester.pumpWidget(createTestWidget());
+    await tester.pumpAndSettle();
 
     await tester.tap(find.text('Complete'));
     await tester.pump();
