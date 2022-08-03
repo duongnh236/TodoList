@@ -1,0 +1,14 @@
+{
+
+  "@@locale" : "vi",
+
+  "appName" : "TodoList App",
+
+  "helloWorld": "Xin chào {lastName} {firstName}",
+  "@pageHomeWelcomeFullName": {
+    "placeholders": {
+      "firstName": {},
+      "lastName": {}
+    }
+  }
+}

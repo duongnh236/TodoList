@@ -5,7 +5,6 @@ import 'package:fluttertemplate/src/presentation/blocs/complete_bloc/complete_cu
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/incomplete_bloc/incomplete_cubit.dart';
 import 'package:get_it/get_it.dart';
-import 'package:hive/hive.dart';
 
 import 'data/source/local/local_datasource.dart';
 
