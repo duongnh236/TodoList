@@ -41,6 +41,15 @@ class MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMix
     );
   }
 
+  void _showPopup(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return InputTaskDialog(tappedSave: (taskName) async {
+            await context.read<HomeCubit>().createTask(taskName: taskName);
+          }, key: const Key('InputTaskDialog-HomePage'),);
+        });
+  }
 
   @override
   void initState() {
@@ -52,6 +61,7 @@ class MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMix
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         key: const Key('AppBar-HomePage'),
         title:  Text(S.of(context).helloWorld('Dương', 'Nguyễn Hải ')),
@@ -60,36 +70,30 @@ class MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMix
             key: const Key('TextButton-HomePage'),
             onPressed: () async {
               await S.load(const Locale('en'));
-              setState(()  {
-
-              });
-              showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return InputTaskDialog(tappedSave: (taskName) {
-                      context.read<HomeCubit>().createTask(taskName: taskName);
-                    }, key: const Key('InputTaskDialog-HomePage'),);
-                  });
+              _showPopup(context);
             },
             child: const Icon(Icons.add, color: Colors.white, size: 30),
           ),
         ],
-      ),
-      body: BlocConsumer<HomeCubit, HomeState>(
+      ), body: BlocConsumer<HomeCubit, HomeState>(
         listenWhen: (previous, current) => current is HomeErrorState,
         listener: (context , state) {
             showDialog(context: context, builder: (BuildContext context) {
               return const ErrorDialog(key: Key('ErrorDialog-HomePage'));
             });
         },
-        builder: ( _, state) {
+        builder: ( context, state) {
+          if (state is HomeHandleStatusItemState) {
             return Center(
               child: ListView.builder(itemBuilder: (BuildContext context, int index) {
-                return _buildItem(state.items![index], (index) {
-                  context.read<HomeCubit>().handleTodoList(index: index);
+                return _buildItem(state.items![index], (index) async {
+                  await context.read<HomeCubit>().handleTodoList(index: index);
                 }, index);
               }, itemCount: state.items != null ?  state.items!.length : 0, key: const Key('ListView-HomePage')),
             );
+          } else {
+            return const Center(child: CircularProgressIndicator(),);
+          }
         },
       ) // This trailing comma makes auto-formatting nicer for build methods.
     );

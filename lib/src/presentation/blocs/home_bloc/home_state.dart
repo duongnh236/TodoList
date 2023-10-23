@@ -1,33 +1,46 @@
+import 'package:equatable/equatable.dart';
 import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
 
-abstract class HomeState {
-  final List<ToDoItemEntity>? items;
-  final String? errorMesg;
-
-  HomeState({this.items, this.errorMesg});
+ abstract class HomeState extends Equatable  {
+   const HomeState();
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
 }
 
 class HomeInitialState extends HomeState {
-  HomeInitialState();
+  const HomeInitialState();
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
 }
 
 class HomeErrorState extends HomeState {
   final String errorMesg;
   final List<ToDoItemEntity> items;
 
-  HomeErrorState(this.errorMesg, this.items)
-      : super(errorMesg: errorMesg, items: items);
+  const HomeErrorState(this.errorMesg, this.items);
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [errorMesg, items];
 }
 
-//ignore: must_be_immutable
 class HomeHandleStatusItemState extends HomeState {
-  HomeHandleStatusItemState(List<ToDoItemEntity> items) : super(items: items);
+  final List<ToDoItemEntity> items;
+  const HomeHandleStatusItemState(this.items);
 
-// @override
-// bool operator ==(Object other) {
-//   if (identical(this, other)) return true;
-//   return other is HomeHandleStatusItemState && other.items == items;
-// }
-// @override
-// int get hashCode => items.hashCode;
+  @override
+  List<Object?> get props => [items];
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is HomeHandleStatusItemState &&
+              runtimeType == other.runtimeType &&
+              items == other.items;
+  @override
+  int get hashCode => items.hashCode;
+
 }

@@ -22,7 +22,7 @@ class HomeCubit extends Cubit<HomeState> {
     items[index ?? 0].isChecked = !items[index ?? 0].isChecked!;
     final bool isSave = await homeUseCase.saveTodoItemsLocal(items);
     if (isSave) {
-      emit(HomeHandleStatusItemState(items));
+      emit(HomeHandleStatusItemState(List.from(items)));
     } else {
       emit(HomeErrorState('please try again', items));
     }
@@ -33,7 +33,7 @@ class HomeCubit extends Cubit<HomeState> {
     items.add(todoTask);
     final bool isSave = await homeUseCase.saveTodoItemsLocal(items);
     if (isSave) {
-      emit(HomeHandleStatusItemState(items));
+      emit(HomeHandleStatusItemState(List.from(items)));
     } else {
       emit(HomeErrorState('please try again', items));
     }
