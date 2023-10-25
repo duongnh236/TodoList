@@ -7,35 +7,45 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this.homeUseCase) : super(HomeInitialState());
 
   final HomeUseCase homeUseCase;
-
-  List<ToDoItemEntity> items = [];
-
+  late final List<ToDoItemEntity>? items;
   Future<void> getTodoItems() async {
     if (await isHasData()) {
       items = await homeUseCase.getTodoItemsLocal();
     } else {
       items = [];
     }
-    emit(HomeHandleStatusItemState(items));
+    emit(state.copyWith(items: items));
   }
+
+  void handleCLick(bool isCheck) {
+    // state.isCheck = !isCheck;
+    final newState = state.copyWith(isCheck: !isCheck);
+
+    // emit(newState);
+    emit(newState);
+  }
+
   Future<void> handleTodoList({int? index}) async {
-    items[index ?? 0].isChecked = !items[index ?? 0].isChecked!;
-    final bool isSave = await homeUseCase.saveTodoItemsLocal(items);
+    emit(HomeBusy());
+    items![index ?? 0].isChecked = !items![index ?? 0].isChecked!;
+    final bool isSave = await homeUseCase.saveTodoItemsLocal(items!);
+    final newState = state.copyWith(items: List.from(items!));
     if (isSave) {
-      emit(HomeHandleStatusItemState(List.from(items)));
+      emit(newState);
     } else {
-      emit(HomeErrorState('please try again', items));
+      emit(HomeErrorState('please try again', items!));
     }
   }
 
   Future<void> createTask({String? taskName}) async {
     final ToDoItemEntity todoTask = ToDoItemEntity(isChecked: false, name: taskName ?? '');
-    items.add(todoTask);
-    final bool isSave = await homeUseCase.saveTodoItemsLocal(items);
+    items!.add(todoTask);
+    final bool isSave = await homeUseCase.saveTodoItemsLocal(items!);
     if (isSave) {
-      emit(HomeHandleStatusItemState(List.from(items)));
+      emit(state.copyWith(items: List.from(items!)));
+      // emit(HomeHandleStatusItemState(items: List.from(items!)));
     } else {
-      emit(HomeErrorState('please try again', items));
+      emit(HomeErrorState('please try again', items!));
     }
   }
   Future<bool> isHasData() async {

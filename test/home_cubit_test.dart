@@ -42,7 +42,7 @@ void main() {
                 ToDoItemEntity(isChecked: true, name: 'bbb')
               ]));
       await homeCubit.getTodoItems();
-      expect(homeCubit.items.length, 2);
+      expect(homeCubit.items!.length, 2);
       expect(homeCubit.state.runtimeType, HomeHandleStatusItemState);
     });
 
@@ -54,7 +54,7 @@ void main() {
                 ToDoItemEntity(isChecked: true, name: 'bbb')
               ]));
       await homeCubit.getTodoItems();
-      expect(homeCubit.items.length, 0);
+      expect(homeCubit.items!.length, 0);
       expect(homeCubit.state.runtimeType, HomeHandleStatusItemState);
     });
   });
@@ -103,7 +103,7 @@ void main() {
       when(mockHomeUseCase.saveTodoItemsLocal(any))
           .thenAnswer((_) => Future.value(false));
       await homeCubit.handleTodoList(index: 0);
-      expect(homeCubit.items[0].isChecked, false);
+      expect(homeCubit.items![0].isChecked, false);
     });
   });
 
