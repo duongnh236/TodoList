@@ -21,15 +21,14 @@ class HomeCubit extends Cubit<HomeState> {
     // state.isCheck = !isCheck;
     final newState = state.copyWith(isCheck: !isCheck);
 
-    // emit(newState);
     emit(newState);
+    // emit(HomeClick1(isChecked: isCheck));
   }
 
   Future<void> handleTodoList({int? index}) async {
-    emit(HomeBusy());
     items![index ?? 0].isChecked = !items![index ?? 0].isChecked!;
     final bool isSave = await homeUseCase.saveTodoItemsLocal(items!);
-    final newState = state.copyWith(items: List.from(items!));
+    final newState = state.copyWith(items: List.of(items!));
     if (isSave) {
       emit(newState);
     } else {
@@ -42,7 +41,7 @@ class HomeCubit extends Cubit<HomeState> {
     items!.add(todoTask);
     final bool isSave = await homeUseCase.saveTodoItemsLocal(items!);
     if (isSave) {
-      emit(state.copyWith(items: List.from(items!)));
+      emit(state.copyWith(items: List.of(items!)));
       // emit(HomeHandleStatusItemState(items: List.from(items!)));
     } else {
       emit(HomeErrorState('please try again', items!));

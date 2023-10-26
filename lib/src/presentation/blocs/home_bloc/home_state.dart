@@ -4,7 +4,7 @@ import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
  class HomeState extends Equatable  {
    final bool? isCheck;
    final  List<ToDoItemEntity>? items;
-   HomeState({this.isCheck, this.items});
+   const HomeState({this.isCheck, this.items});
 
   @override
   // TODO: implement props
@@ -19,6 +19,7 @@ import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
       items: items ?? this.items,
     );
   }
+
 
 }
 class HomeBusy extends HomeState {

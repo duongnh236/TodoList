@@ -39,7 +39,6 @@ class MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMix
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
         key: const Key('AppBar-HomePage'),
         title:  Text(S.of(context).helloWorld('Dương', 'Nguyễn Hải ')),
@@ -99,14 +98,14 @@ class _ListViewTestState extends State<ListViewTest> {
   @override
   Widget build(BuildContext context) {
 
-    return BlocSelector<HomeCubit, HomeState, List<ToDoItemEntity>>(selector: (item) => item.items ?? [], builder: (context, state) {
+    return BlocSelector<HomeCubit, HomeState, List<ToDoItemEntity>>(selector: (state) =>  state.items ?? [], builder: (context, items) {
       return SizedBox(
         height: 300,
         child: ListView.builder(itemBuilder: (BuildContext context, int index) {
-          return _buildItem(state[index], (index) async {
+          return _buildItem(items[index], (index) async {
             await context.read<HomeCubit>().handleTodoList(index: index);
           }, index);
-        }, itemCount: state != null ?  state.length : 0, key: const Key('ListView-HomePage')),
+        }, itemCount: items != null ?  items.length : 0, key: const Key('ListView-HomePage')),
       );
     });
     // return BlocConsumer<HomeCubit, HomeState>(
@@ -144,11 +143,11 @@ class Test1 extends StatefulWidget {
 class _Test1State extends State<Test1> {
   @override
   Widget build(BuildContext context) {
-      return BlocSelector<HomeCubit, HomeState, bool>(selector: (item) => item.isCheck ?? false , builder: (context, state) {
+      return BlocSelector<HomeCubit, HomeState, bool>(selector: (state) =>  state.isCheck ?? false , builder: (context, value) {
         return InkWell(
             onTap: () {
-              context.read<HomeCubit>().handleCLick(state);
-            }, child: Container(height: 100, width: 40, color: state ? Colors.blue : Colors.green));
+              context.read<HomeCubit>().handleCLick(value);
+            }, child: Container(height: 100, width: 40, color: value ? Colors.blue : Colors.green));
       });
     // return BlocConsumer<HomeCubit, HomeState>(builder: (context, state) {
     //   // if (state is HomeClick1) {
