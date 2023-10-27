@@ -4,7 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_state.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../generated/l10n.dart';
+import '../../../app/router/routes.dart';
 import '../../widgets/error_widget_dialog.dart';
 import '../../widgets/input_task_dialog.dart';
 
@@ -146,7 +148,8 @@ class _Test1State extends State<Test1> {
       return BlocSelector<HomeCubit, HomeState, bool>(selector: (state) =>  state.isCheck ?? false , builder: (context, value) {
         return InkWell(
             onTap: () {
-              context.read<HomeCubit>().handleCLick(value);
+              // context.read<HomeCubit>().handleCLick(value);
+              context.go(Routes.homeDetailPage);
             }, child: Container(height: 100, width: 40, color: value ? Colors.blue : Colors.green));
       });
     // return BlocConsumer<HomeCubit, HomeState>(builder: (context, state) {

@@ -14,7 +14,7 @@ class HomeCubit extends Cubit<HomeState> {
     } else {
       items = [];
     }
-    emit(state.copyWith(items: items));
+    emit(state.copyWith(items: List.from(items ?? [])));
   }
 
   void handleCLick(bool isCheck) {
@@ -26,9 +26,9 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> handleTodoList({int? index}) async {
-    items![index ?? 0].isChecked = !items![index ?? 0].isChecked!;
-    final bool isSave = await homeUseCase.saveTodoItemsLocal(items!);
-    final newState = state.copyWith(items: List.of(items!));
+    state.items![index ?? 0].isChecked = !state.items![index ?? 0].isChecked!;
+    final bool isSave = await homeUseCase.saveTodoItemsLocal(state.items!);
+    final newState = state.copyWith(items: List.of(state.items ?? []));
     if (isSave) {
       emit(newState);
     } else {

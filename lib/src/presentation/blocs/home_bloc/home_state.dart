@@ -1,14 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
 
- class HomeState extends Equatable  {
+ class HomeState{
    final bool? isCheck;
    final  List<ToDoItemEntity>? items;
    const HomeState({this.isCheck, this.items});
 
-  @override
-  // TODO: implement props
-  List<Object?> get props => [isCheck, items];
 
    HomeState copyWith({
     bool? isCheck,
@@ -19,6 +16,10 @@ import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
       items: items ?? this.items,
     );
   }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [isCheck, items];
 
 
 }

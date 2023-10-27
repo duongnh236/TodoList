@@ -146,6 +146,10 @@ glob
 2.19
 file:///Users/soribao/.pub-cache/hosted/pub.dev/glob-2.1.2/
 file:///Users/soribao/.pub-cache/hosted/pub.dev/glob-2.1.2/lib/
+go_router
+2.19
+file:///Users/soribao/.pub-cache/hosted/pub.dev/go_router-12.0.0/
+file:///Users/soribao/.pub-cache/hosted/pub.dev/go_router-12.0.0/lib/
 graphs
 2.18
 file:///Users/soribao/.pub-cache/hosted/pub.dev/graphs-2.3.1/
@@ -410,4 +414,8 @@ flutter_test
 3.0
 file:///Users/soribao/Documents/flutter_nullsafety/flutter/packages/flutter_test/
 file:///Users/soribao/Documents/flutter_nullsafety/flutter/packages/flutter_test/lib/
+flutter_web_plugins
+3.0
+file:///Users/soribao/Documents/flutter_nullsafety/flutter/packages/flutter_web_plugins/
+file:///Users/soribao/Documents/flutter_nullsafety/flutter/packages/flutter_web_plugins/lib/
 2

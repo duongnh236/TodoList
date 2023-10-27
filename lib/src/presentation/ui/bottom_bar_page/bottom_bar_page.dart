@@ -6,53 +6,70 @@ import 'package:fluttertemplate/src/presentation/blocs/bottom_bar_bloc/bottom_ba
 import 'package:fluttertemplate/src/presentation/ui/complete_page/complete_page.dart';
 import 'package:fluttertemplate/src/presentation/ui/home_page/home_page.dart';
 import 'package:fluttertemplate/src/presentation/ui/incomplete_page/incomplete_page.dart';
+import 'package:go_router/go_router.dart';
 
-class BottomBarPage extends StatefulWidget {
-  const BottomBarPage({Key? key}) : super(key: key);
+import '../../../app/router/routes.dart';
+import '../../../core/shared/name_nav_bar_item.dart';
+import '../../blocs/navigation_cubit/navigation_cubit.dart';
 
-  @override
-  State<BottomBarPage> createState() => _BottomBarPageState();
-}
+class BottomBarPage extends StatelessWidget {
 
+  final Widget screen;
 
+  BottomBarPage({Key? key, required this.screen}) : super(key: key);
 
-class _BottomBarPageState extends State<BottomBarPage> {
+  BlocBuilder<NavigationCubit, NavigationState> _buildBottomNavigation(mContext, List<NamedNavigationBarItemWidget>tabs) =>
+      BlocBuilder<NavigationCubit, NavigationState>(
+        buildWhen: (previous, current) => previous.index != current.index,
+        builder: (context, state) {
+          return BottomNavigationBar(
+            onTap: (value) {
+              if(state.index != value){
+                context.read<NavigationCubit>().getNavBarItem(value);
+                context.go(tabs[value].initialLocation);
+              }
+            },
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            elevation: 0,
+            backgroundColor: Colors.black,
+            unselectedItemColor: Colors.white,
+            selectedIconTheme: IconThemeData(
+              size: ((IconTheme
+                  .of(mContext)
+                  .size)! * 1.3),
+            ),
+            items: tabs,
+            currentIndex: state.index,
+            type: BottomNavigationBarType.fixed,
+          );
+        },
+      );
 
-  Widget _buildBody({int? index}) {
-    switch (index) {
-      case 0:
-        return const MyHomePage();
-      case 1:
-        return const CompletePage();
-      default:
-        return const InCompletePage();
-    }
-  }
+  final tabs = [
+    NamedNavigationBarItemWidget(
+      initialLocation: Routes.homePage,
+      icon: const Icon(Icons.home),
+      label: 'Home',
+    ),
+    NamedNavigationBarItemWidget(
+      initialLocation: Routes.complete,
+      icon: const Icon(Icons.person),
+      label: 'Profile',
+    ),
+    NamedNavigationBarItemWidget(
+      initialLocation: Routes.inComplete,
+      icon: const Icon(Icons.settings),
+      label: 'Setting',
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       body: BlocBuilder<BottomBarCubit, BottomBarState>(
-           builder: (_, state) {
-         if (state is BottomBarIndexState) {
-           return _buildBody(index: state.index ?? 0);
-         } else {
-           return _buildBody(index: 0);
-         }
-       }),
-      bottomNavigationBar: BottomNavigationBar(
-        key: const Key('BottomNavigationBar'),
-        type: BottomNavigationBarType.fixed,
-        currentIndex: context.watch<BottomBarCubit>().indexSelected ?? 0,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Container(key: const Key('BottomNavigationBarItem-Home'),), label: "Home"),
-          BottomNavigationBarItem(icon: Container(key: const Key('BottomNavigationBarItem-Complete')), label: "Complete"),
-          BottomNavigationBarItem(icon: Container(key: const Key('BottomNavigationBarItem-InComplete')), label: "InComplete"),
-        ],
-        onTap: (int index) {
-          context.read<BottomBarCubit>().changeIndex(index: index);
-        },
-      ),
+      body: screen,
+      bottomNavigationBar: _buildBottomNavigation(context, tabs),
     );
   }
 }
+

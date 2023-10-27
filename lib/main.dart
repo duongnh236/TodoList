@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertemplate/src/app/router/app_router.dart';
 import 'package:fluttertemplate/src/core/utils/local_database_util.dart';
 import 'package:fluttertemplate/src/injection.dart';
 import 'package:fluttertemplate/src/presentation/blocs/bottom_bar_bloc/bottom_bar_cubit.dart';
@@ -36,7 +37,11 @@ class MyApp extends StatelessWidget {
       child: ScreenUtilInit(
           designSize: const Size(375, 812),
           builder: (context, widget) {
-            return MaterialApp(
+            return MaterialApp.router(
+              // routerConfig: AppRouter.router,
+              routerDelegate: AppRouter.router.routerDelegate,
+              routeInformationProvider: AppRouter.router.routeInformationProvider,
+              routeInformationParser: AppRouter.router.routeInformationParser,
               localizationsDelegates: const [
                 S.delegate,
                 GlobalMaterialLocalizations.delegate,
@@ -48,9 +53,8 @@ class MyApp extends StatelessWidget {
               theme: ThemeData(
                 primarySwatch: Colors.blue,
               ),
-              home: widget,
             );
-          }, child: const BottomBarPage()),
+          }),
     );
   }
 }
