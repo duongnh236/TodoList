@@ -1,7 +1,9 @@
 import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
 
+import '../../../data/source/local/models/todo_item.dart';
+
 abstract class HomeRepository {
-  Future<List<ToDoItemEntity>> getTodoItemsLocal();
-  Future<bool> saveTodoItemsLocal(List<ToDoItemEntity> items);
+  Future<List<TodoItemHive>> getTodoItemsLocal();
+  Future<bool> saveTodoItemsLocal(List<TodoItemHive> items);
   Future<bool> isHasData();
 }

@@ -33,7 +33,7 @@
     },
     {
       "name": "bloc_test",
-      "rootUri": "file:///Users/soribao/.pub-cache/hosted/pub.dev/bloc_test-9.1.4",
+      "rootUri": "file:///Users/soribao/.pub-cache/hosted/pub.dev/bloc_test-9.1.5",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -249,7 +249,7 @@
     },
     {
       "name": "go_router",
-      "rootUri": "file:///Users/soribao/.pub-cache/hosted/pub.dev/go_router-12.0.0",
+      "rootUri": "file:///Users/soribao/.pub-cache/hosted/pub.dev/go_router-12.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
@@ -629,10 +629,10 @@
       "name": "fluttertemplate",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-10-27T09:51:26.412544Z",
+  "generated": "2023-10-30T03:45:18.552368Z",
   "generator": "pub",
   "generatorVersion": "3.1.1"
 }

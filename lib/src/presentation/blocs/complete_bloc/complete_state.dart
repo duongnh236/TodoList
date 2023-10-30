@@ -1,9 +1,10 @@
 import 'package:equatable/equatable.dart';
+import '../../../data/source/local/models/todo_item.dart';
 import '../../../domain/entities/todo_item_entity.dart';
 
 abstract class CompleteState extends Equatable {}
 class CompleteInitial extends CompleteState {
-  final List<ToDoItemEntity>? items;
+  final List<TodoItemHive>? items;
 
   CompleteInitial({this.items});
 

@@ -9,7 +9,6 @@ import 'package:fluttertemplate/src/presentation/blocs/bottom_bar_bloc/bottom_ba
 import 'package:fluttertemplate/src/presentation/blocs/complete_bloc/complete_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/incomplete_bloc/incomplete_cubit.dart';
-import 'package:fluttertemplate/src/presentation/ui/bottom_bar_page/bottom_bar_page.dart';
 import 'generated/l10n.dart';
 
 Future<void> main()  async {

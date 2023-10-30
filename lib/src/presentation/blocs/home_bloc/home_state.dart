@@ -1,30 +1,12 @@
+import 'dart:math';
+
 import 'package:equatable/equatable.dart';
 import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
 
- class HomeState{
-   final bool? isCheck;
-   final  List<ToDoItemEntity>? items;
-   const HomeState({this.isCheck, this.items});
+import '../../../data/source/local/models/todo_item.dart';
 
-
-   HomeState copyWith({
-    bool? isCheck,
-    List<ToDoItemEntity>? items,
-  }) {
-    return HomeState(
-      isCheck: isCheck ?? this.isCheck,
-      items: items ?? this.items,
-    );
-  }
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [isCheck, items];
-
-
-}
-class HomeBusy extends HomeState {
-    HomeBusy();
+ sealed class HomeState extends Equatable{
+   const HomeState();
 }
 
 class HomeInitialState extends HomeState {
@@ -37,54 +19,30 @@ class HomeInitialState extends HomeState {
 
 class HomeErrorState extends HomeState {
   final String errorMesg;
-  final List<ToDoItemEntity> items;
+  final List<TodoItemHive> items;
 
-   HomeErrorState(this.errorMesg, this.items);
+   const HomeErrorState(this.errorMesg, this.items);
 
   @override
   // TODO: implement props
-  List<Object?> get props => [errorMesg, items];
+  List<Object?> get props => [];
 }
 
 class HomeClick1 extends HomeState {
    final bool? isChecked;
-    HomeClick1({this.isChecked}): super(isCheck: isChecked);
+    HomeClick1({this.isChecked});
 
    @override
    List<Object?> get props => [isChecked];
 
-   @override
-   bool operator ==(Object other) =>
-       identical(this, other) ||
-           other is HomeClick1 &&
-               runtimeType == other.runtimeType &&
-               isChecked == other.items;
-   @override
-   int get hashCode => isChecked.hashCode;
+
 }
 
 class HomeHandleStatusItemState extends HomeState {
-  // @override
-  final List<ToDoItemEntity>? items;
-  HomeHandleStatusItemState({this.items}) : super(items: items);
+  final List<TodoItemHive>? items;
+  const HomeHandleStatusItemState(this.items);
 
-  // HomeHandleStatusItemState copyWith({
-  //   List<ToDoItemEntity>? items,
-  // }) {
-  //   return HomeHandleStatusItemState(
-  //     items: items ?? this.items,
-  //   );
-  // }
-@override
+  @override
+  // TODO: implement props
   List<Object?> get props => [items];
-  //
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-          other is HomeHandleStatusItemState &&
-              runtimeType == other.runtimeType &&
-              items == other.items;
-  @override
-  int get hashCode => items.hashCode;
-
 }
