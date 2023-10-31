@@ -14,7 +14,7 @@ class HomeCubit extends Cubit<HomeState> {
     } else {
       items = [];
     }
-    emit(state.copyWith(items: List.from(items ?? [])));
+    emit(state.copyWith(items: items));
   }
 
   void handleCLick(bool isCheck) {
@@ -24,13 +24,15 @@ class HomeCubit extends Cubit<HomeState> {
     emit(newState);
     // emit(HomeClick1(isChecked: isCheck));
   }
-
+  List<ToDoItemEntity> doEditlist({int? index}) {
+    items?[index ?? 0] = items![index ?? 0].copyWith(isChecked: !items![index ?? 0].isChecked! );
+    return List.from(items!);
+  }
   Future<void> handleTodoList({int? index}) async {
-    state.items![index ?? 0].isChecked = !state.items![index ?? 0].isChecked!;
-    final bool isSave = await homeUseCase.saveTodoItemsLocal(state.items!);
-    final newState = state.copyWith(items: List.of(state.items ?? []));
+    final _items = doEditlist(index: index);
+    final bool isSave = await homeUseCase.saveTodoItemsLocal(_items);
     if (isSave) {
-      emit(newState);
+      emit(state.copyWith(items: _items));
     } else {
       emit(HomeErrorState('please try again', items!));
     }

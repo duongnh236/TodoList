@@ -1,10 +1,21 @@
 import 'package:equatable/equatable.dart';
 
-//ignore: must_be_immutable
-class ToDoItemEntity {
-
+class ToDoItemEntity extends Equatable {
    String? name;
    bool? isChecked;
-   ToDoItemEntity({this.isChecked, this.name});
+   ToDoItemEntity({this.isChecked, this.name}): super();
 
+  @override
+  // TODO: implement props
+  List<Object?> get props => [isChecked, name];
+
+   ToDoItemEntity copyWith({
+    String? name,
+    bool? isChecked,
+  }) {
+    return ToDoItemEntity(
+      name: name ?? this.name,
+      isChecked: isChecked ?? this.isChecked,
+    );
+  }
 }

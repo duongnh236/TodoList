@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
 
- class HomeState{
+ class HomeState extends Equatable{
    final bool? isCheck;
    final  List<ToDoItemEntity>? items;
    const HomeState({this.isCheck, this.items});
