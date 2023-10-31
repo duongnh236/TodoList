@@ -7,7 +7,7 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this.homeUseCase) : super(HomeInitialState());
 
   final HomeUseCase homeUseCase;
-  late final List<ToDoItemEntity>? items;
+  List<ToDoItemEntity>? items;
   Future<void> getTodoItems() async {
     if (await isHasData()) {
       items = await homeUseCase.getTodoItemsLocal();
