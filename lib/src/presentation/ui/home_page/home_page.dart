@@ -55,7 +55,7 @@ class MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMix
           ),
         ],
       ), body: const Column(children: <Widget>[
-        Expanded(child: Test1()),
+        // Expanded(child: Test1()),
         ListViewTest()
     ],)
     );
@@ -100,72 +100,67 @@ class _ListViewTestState extends State<ListViewTest> {
   @override
   Widget build(BuildContext context) {
 
-    return BlocSelector<HomeCubit, HomeState, List<ToDoItemEntity>>(selector: (state) =>  state.items ?? [], builder: (context, items) {
-      return SizedBox(
-        height: 300,
-        child: ListView.builder(itemBuilder: (BuildContext context, int index) {
-          return _buildItem(items[index], (index) async {
-            await context.read<HomeCubit>().handleTodoList(index: index);
-          }, index);
-        }, itemCount: items != null ?  items.length : 0, key: const Key('ListView-HomePage')),
-      );
-    });
-    // return BlocConsumer<HomeCubit, HomeState>(
-    //   listenWhen: (previous, current) => current is HomeErrorState,
-    //   listener: (context , state) {
-    //     showDialog(context: context, builder: (BuildContext context) {
-    //       return const ErrorDialog(key: Key('ErrorDialog-HomePage'));
-    //     });
-    //   },
-    //   buildWhen: (previous, current) => previous.items != current.items,
-    //   builder: ( context, state) {
-    //     // if (state is HomeHandleStatusItemState) {
-    //       return SizedBox(
-    //         height: 300,
-    //         child: ListView.builder(itemBuilder: (BuildContext context, int index) {
-    //           return _buildItem(state.items![index], (index) async {
-    //             await context.read<HomeCubit>().handleTodoList(index: index);
-    //           }, index);
-    //         }, itemCount: state.items != null ?  state.items!.length : 0, key: const Key('ListView-HomePage')),
-    //       );
-    //     }
-    //     // return const Center(child: CircularProgressIndicator(),);
-    //   // },
-    // );
+    // return BlocSelector<HomeCubit, HomeState, List<ToDoItemEntity>>(selector: (state) =>  state.items ?? [], builder: (context, items) {
+    //   return SizedBox(
+    //     height: 300,
+    //     child: ListView.builder(itemBuilder: (BuildContext context, int index) {
+    //       return _buildItem(items[index], (index) async {
+    //         await context.read<HomeCubit>().handleTodoList(index: index);
+    //       }, index);
+    //     }, itemCount: items != null ?  items.length : 0, key: const Key('ListView-HomePage')),
+    //   );
+    // });
+    return BlocConsumer<HomeCubit, HomeState>(
+      listenWhen: (previous, current) => current is HomeErrorState,
+      listener: (context , state) {
+        showDialog(context: context, builder: (BuildContext context) {
+          return const ErrorDialog(key: Key('ErrorDialog-HomePage'));
+        });
+      },
+      // buildWhen: (previous, current) => previous.items != current.items,
+      builder: ( context, state) {
+        // if (state is HomeHandleStatusItemState) {
+          return SizedBox(
+            height: 300,
+            child: ListView.builder(itemBuilder: (BuildContext context, int index) {
+              return _buildItem(state.items![index], (index) async {
+                await context.read<HomeCubit>().handleTodoList(index: index);
+              }, index);
+            }, itemCount: state.items != null ?  state.items!.length : 0, key: const Key('ListView-HomePage')),
+          );
+        }
+        // return const Center(child: CircularProgressIndicator(),);
+      // },
+    );
+    // return BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
+    //   return SizedBox(
+    //     height: 300,
+    //     child: ListView.builder(itemBuilder: (BuildContext context, int index) {
+    //       return _buildItem(state.items![index], (index) async {
+    //         await context.read<HomeCubit>().handleTodoList(index: index);
+    //       }, index);
+    //     }, itemCount: state.items != null ?  state.items!.length : 0, key: const Key('ListView-HomePage')),
+    //   );
+    // },);
   }
 }
 
-class Test1 extends StatefulWidget {
-  const Test1({Key? key}) : super(key: key);
-
-  @override
-  State<Test1> createState() => _Test1State();
-}
-
-class _Test1State extends State<Test1> {
-  @override
-  Widget build(BuildContext context) {
-      return BlocSelector<HomeCubit, HomeState, bool>(selector: (state) =>  state.isCheck ?? false , builder: (context, value) {
-        return InkWell(
-            onTap: () {
-              // context.read<HomeCubit>().handleCLick(value);
-              context.go(Routes.homeDetailPage);
-            }, child: Container(height: 100, width: 40, color: value ? Colors.blue : Colors.green));
-      });
-    // return BlocConsumer<HomeCubit, HomeState>(builder: (context, state) {
-    //   // if (state is HomeClick1) {
-    //     return InkWell(
-    //         onTap: () {
-    //           context.read<HomeCubit>().handleCLick(state.isCheck ?? false);
-    //         }, child: Container(height: 100, width: 40, color: state.isCheck ?? false ? Colors.blue : Colors.green));
-    //   // }
-    //   // return Container();
-    // },buildWhen: (pre,curr) => pre != curr,
-    //   listenWhen: (previous, current) => current is HomeErrorState,
-    //   listener: (context , state) {
-    //     showDialog(context: context, builder: (BuildContext context) {
-    //       return const ErrorDialog(key: Key('ErrorDialog-HomePage'));
-    //     });
-    //     });
-  }
-}
+// class Test1 extends StatefulWidget {
+//   const Test1({Key? key}) : super(key: key);
+//
+//   @override
+//   State<Test1> createState() => _Test1State();
+// }
+//
+// class _Test1State extends State<Test1> {
+//   @override
+//   Widget build(BuildContext context) {
+//       return BlocSelector<HomeCubit, HomeState, bool>(selector: (state) =>  state.isCheck ?? false , builder: (context, value) {
+//         return InkWell(
+//             onTap: () {
+//               // context.read<HomeCubit>().handleCLick(value);
+//               context.go(Routes.homeDetailPage);
+//             }, child: Container(height: 100, width: 40, color: value ? Colors.blue : Colors.green));
+//       });
+//   }
+// }

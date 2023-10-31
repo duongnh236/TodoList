@@ -2,24 +2,24 @@ import 'package:equatable/equatable.dart';
 import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
 
  class HomeState extends Equatable{
-   final bool? isCheck;
+   // final bool? isCheck;
    final  List<ToDoItemEntity>? items;
-   const HomeState({this.isCheck, this.items});
+   const HomeState({ this.items});
 
 
    HomeState copyWith({
-    bool? isCheck,
+    // bool? isCheck,
     List<ToDoItemEntity>? items,
   }) {
     return HomeState(
-      isCheck: isCheck ?? this.isCheck,
+      // isCheck: isCheck ?? this.isCheck,
       items: items ?? this.items,
     );
   }
 
   @override
   // TODO: implement props
-  List<Object?> get props => [isCheck, items];
+  List<Object?> get props => [ items];
 
 
 }
@@ -48,7 +48,7 @@ class HomeErrorState extends HomeState {
 
 class HomeClick1 extends HomeState {
    final bool? isChecked;
-    HomeClick1({this.isChecked}): super(isCheck: isChecked);
+    HomeClick1({this.isChecked}): super();
 
    @override
    List<Object?> get props => [isChecked];
