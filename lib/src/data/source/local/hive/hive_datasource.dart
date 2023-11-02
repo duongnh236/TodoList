@@ -1,10 +1,10 @@
 import 'package:fluttertemplate/src/core/utils/local_database_util.dart';
-import 'package:fluttertemplate/src/data/source/local/base_local_datasource.dart';
+import 'package:fluttertemplate/src/data/source/local/hive/base_local_datasource.dart';
 import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
-import 'models/todo_item.dart';
+import '../models/todo_item.dart';
 
-class LocalDataSource extends BaseLocalDataSource<TodoItemHive, ToDoItemEntity>{
-  LocalDataSource() : super(boxName: TodoItemHive.boxKey) {
+class HiveDataSource extends BaseLocalDataSource<TodoItemHive, ToDoItemEntity>{
+  HiveDataSource() : super(boxName: TodoItemHive.boxKey) {
     DatabaseUtil.registerAdapter<TodoItemHive>(TodoItemHiveAdapter());
   }
 

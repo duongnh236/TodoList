@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:fluttertemplate/src/data/source/local/local_datasource.dart';
+import 'package:fluttertemplate/src/data/source/local/hive/hive_datasource.dart';
 import 'package:fluttertemplate/src/data/source/local/models/todo_item.dart';
 import 'package:hive/hive.dart';
 
 
 void main() {
-  late LocalDataSource localDataSource;
+  late HiveDataSource localDataSource;
   final Map<String, TodoItemHive> items = {
     '1': TodoItemHive(isChecked: true, name: 'a'),
     '2': TodoItemHive(isChecked: true, name: 'b'),
@@ -13,7 +13,7 @@ void main() {
   late Box box;
   setUp(()  async {
     Hive.init('./local_database_test_file/');
-    localDataSource = LocalDataSource();
+    localDataSource = HiveDataSource();
     box = await localDataSource.getBoxInstance;
   });
 
