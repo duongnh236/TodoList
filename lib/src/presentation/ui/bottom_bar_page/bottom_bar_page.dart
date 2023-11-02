@@ -1,14 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertemplate/src/presentation/blocs/bottom_bar_bloc/bottom_bar_cubit.dart';
-import 'package:fluttertemplate/src/presentation/blocs/bottom_bar_bloc/bottom_bar_state.dart';
-import 'package:fluttertemplate/src/presentation/ui/complete_page/complete_page.dart';
-import 'package:fluttertemplate/src/presentation/ui/home_page/home_page.dart';
-import 'package:fluttertemplate/src/presentation/ui/incomplete_page/incomplete_page.dart';
+import 'package:fluttertemplate/src/presentation/blocs/theme_cubit/theme_dart_cubit.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../app/router/routes.dart';
+import '../../../core/router/routes.dart';
 import '../../../core/shared/name_nav_bar_item.dart';
 import '../../blocs/navigation_cubit/navigation_cubit.dart';
 

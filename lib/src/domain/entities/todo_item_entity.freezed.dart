@@ -108,7 +108,7 @@ class __$$ToDoItemEntityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ToDoItemEntityImpl implements _ToDoItemEntity {
-  _$ToDoItemEntityImpl({required this.isChecked, required this.name});
+  _$ToDoItemEntityImpl({this.isChecked, this.name});
 
   factory _$ToDoItemEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$ToDoItemEntityImplFromJson(json);
@@ -153,9 +153,8 @@ class _$ToDoItemEntityImpl implements _ToDoItemEntity {
 }
 
 abstract class _ToDoItemEntity implements ToDoItemEntity {
-  factory _ToDoItemEntity(
-      {required final bool? isChecked,
-      required final String? name}) = _$ToDoItemEntityImpl;
+  factory _ToDoItemEntity({final bool? isChecked, final String? name}) =
+      _$ToDoItemEntityImpl;
 
   factory _ToDoItemEntity.fromJson(Map<String, dynamic> json) =
       _$ToDoItemEntityImpl.fromJson;

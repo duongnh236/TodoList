@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../app/router/routes.dart';
+import '../../../core/router/routes.dart';
 
 class HomeDetailPage extends StatefulWidget {
   const HomeDetailPage({Key? key}) : super(key: key);

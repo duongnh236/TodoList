@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import '../../../app/router/routes.dart';
+import '../../../core/router/routes.dart';
 part 'navigation_state.dart';
 
 class NavigationCubit extends Cubit<NavigationState> {

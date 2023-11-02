@@ -17,8 +17,7 @@ class _InputTaskDialogState extends State<InputTaskDialog> {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(
-          borderRadius:
-          BorderRadius.circular(20.0)), //this right here
+          borderRadius: BorderRadius.circular(20.0)), //this right here
       child: SizedBox(
         height: 200,
         child: Padding(
@@ -30,25 +29,23 @@ class _InputTaskDialogState extends State<InputTaskDialog> {
               TextField(
                 key: const Key('Textfield-input'),
                 controller: _textEditingController,
-                decoration:  InputDecoration(
+                decoration: InputDecoration(
                   errorText: isErrorText ? 'Please Input Task Name' : null,
                   labelText: 'Input Task Name',
-                    enabledBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                    focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.cyan),
-                    ),
-                    // hintText: 'Input Task Name'
+                  enabledBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.cyan),
+                  ),
+                  // hintText: 'Input Task Name'
                 ),
               ),
               const SizedBox(height: 20),
               Container(
                 key: const Key('Button-Input'),
                 width: 320.0,
-                decoration: const BoxDecoration(
-                  color: Colors.transparent
-                ),
+                decoration: const BoxDecoration(color: Colors.transparent),
                 child: ElevatedButton(
                   onPressed: () {
                     if (widget.tappedSave != null) {
@@ -67,7 +64,6 @@ class _InputTaskDialogState extends State<InputTaskDialog> {
                     "Save",
                     style: TextStyle(color: Colors.white),
                   ),
-
                 ),
               )
             ],

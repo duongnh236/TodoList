@@ -4,9 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_state.dart';
-import 'package:go_router/go_router.dart';
 import '../../../../generated/l10n.dart';
-import '../../../app/router/routes.dart';
+import '../../blocs/theme_cubit/theme_dart_cubit.dart';
 import '../../widgets/error_widget_dialog.dart';
 import '../../widgets/input_task_dialog.dart';
 
@@ -17,17 +16,18 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => MyHomePageState();
 }
 
-class MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMixin {
-
-
-
+class MyHomePageState extends State<MyHomePage>
+    with AutomaticKeepAliveClientMixin {
   void _showPopup(BuildContext context) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return InputTaskDialog(tappedSave: (taskName) async {
-            await context.read<HomeCubit>().createTask(taskName: taskName);
-          }, key: const Key('InputTaskDialog-HomePage'),);
+          return InputTaskDialog(
+            tappedSave: (taskName) async {
+              await context.read<HomeCubit>().createTask(taskName: taskName);
+            },
+            key: const Key('InputTaskDialog-HomePage'),
+          );
         });
   }
 
@@ -38,32 +38,62 @@ class MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMix
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        key: const Key('AppBar-HomePage'),
-        title:  Text(S.of(context).helloWorld('Dương', 'Nguyễn Hải ')),
-        actions: <Widget>[
-          TextButton(
-            key: const Key('TextButton-HomePage'),
-            onPressed: () async {
-              await S.load(const Locale('en'));
-              _showPopup(context);
-            },
-            child: const Icon(Icons.add, color: Colors.white, size: 30),
-          ),
-        ],
-      ), body: const Column(children: <Widget>[
-        // Expanded(child: Test1()),
-        ListViewTest()
-    ],)
-    );
+        appBar: AppBar(
+          key: const Key('AppBar-HomePage'),
+          title: Text(S.of(context).helloWorld('Dương', 'Nguyễn Hải ')),
+          actions: <Widget>[
+            TextButton(
+              key: const Key('TextButton-HomePage'),
+              onPressed: () async {
+                await S.load(const Locale('en'));
+                _showPopup(context);
+              },
+              child: const Icon(Icons.add, color: Colors.white, size: 30),
+            ),
+          ],
+        ),
+        body: Column(
+          children: <Widget>[
+            Expanded(
+                child: Row(
+                  children: [
+                    Container(
+                      color: Colors.red,
+                      height: 100,
+                      width: 100,
+                      child: ElevatedButton(
+                          onPressed: (() {
+                            context.read<ThemeCubit>().changeToDarkTheme();
+                          }),
+                          child: const Text("Dark to light")),
+                    ),
+                    const SizedBox(width: 20),
+                    Container(
+                      color: Colors.red,
+                      height: 100,
+                      width: 100,
+                      child: ElevatedButton(
+                          onPressed: (() {
+                            context.read<ThemeCubit>().changeToLightTheme();
+                          }),
+                          child: const Text("Light to Dark")),
+                    )
+                  ],
+                )),
+            ListViewTest()
+          ],
+        ));
   }
+
   @override
   // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
 }
+
 class ListViewTest extends StatefulWidget {
   const ListViewTest({Key? key}) : super(key: key);
 
@@ -72,8 +102,8 @@ class ListViewTest extends StatefulWidget {
 }
 
 class _ListViewTestState extends State<ListViewTest> {
-
-  Widget _buildItem(ToDoItemEntity toDoItemEntity, Function(int index) ontap, int index) {
+  Widget _buildItem(
+      ToDoItemEntity toDoItemEntity, Function(int index) ontap, int index) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       height: 50,
@@ -87,9 +117,12 @@ class _ListViewTestState extends State<ListViewTest> {
               ontap(index);
             },
             child: Icon(
-              toDoItemEntity.isChecked ?? false ? Icons.check_box : Icons.check_box_outline_blank_outlined,
+              toDoItemEntity.isChecked ?? false
+                  ? Icons.check_box
+                  : Icons.check_box_outline_blank_outlined,
               size: 30.0,
-              color: toDoItemEntity.isChecked ?? false ?  Colors.blue : Colors.blue,
+              color:
+                  toDoItemEntity.isChecked ?? false ? Colors.blue : Colors.blue,
             ),
           )
         ],
@@ -99,7 +132,6 @@ class _ListViewTestState extends State<ListViewTest> {
 
   @override
   Widget build(BuildContext context) {
-
     // return BlocSelector<HomeCubit, HomeState, List<ToDoItemEntity>>(selector: (state) =>  state.items ?? [], builder: (context, items) {
     //   return SizedBox(
     //     height: 300,
@@ -111,27 +143,35 @@ class _ListViewTestState extends State<ListViewTest> {
     //   );
     // });
     return BlocConsumer<HomeCubit, HomeState>(
-      listenWhen: (previous, current) => current is HomeErrorState,
-      listener: (context , state) {
-        showDialog(context: context, builder: (BuildContext context) {
-          return const ErrorDialog(key: Key('ErrorDialog-HomePage'));
-        });
-      },
-      // buildWhen: (previous, current) => previous.items != current.items,
-      builder: ( context, state) {
-        // if (state is HomeHandleStatusItemState) {
+        listenWhen: (previous, current) => current is HomeErrorState,
+        listener: (context, state) {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return const ErrorDialog(key: Key('ErrorDialog-HomePage'));
+              });
+        },
+        buildWhen: (previous, current) => previous.items != current.items,
+        builder: (context, state) {
+          print("change items ");
+          // if (state is HomeHandleStatusItemState) {
           return SizedBox(
             height: 300,
-            child: ListView.builder(itemBuilder: (BuildContext context, int index) {
-              return _buildItem(state.items![index], (index) async {
-                await context.read<HomeCubit>().handleTodoList(index: index);
-              }, index);
-            }, itemCount: state.items != null ?  state.items!.length : 0, key: const Key('ListView-HomePage')),
+            child: ListView.builder(
+                itemBuilder: (BuildContext context, int index) {
+                  return _buildItem(state.items![index], (index) async {
+                    await context
+                        .read<HomeCubit>()
+                        .handleTodoList(index: index);
+                  }, index);
+                },
+                itemCount: state.items != null ? state.items!.length : 0,
+                key: const Key('ListView-HomePage')),
           );
         }
         // return const Center(child: CircularProgressIndicator(),);
-      // },
-    );
+        // },
+        );
     // return BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
     //   return SizedBox(
     //     height: 300,

@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertemplate/src/app/router/routes.dart';
+import 'package:fluttertemplate/src/core/router/routes.dart';
 import 'package:fluttertemplate/src/presentation/blocs/navigation_cubit/navigation_cubit.dart';
 import 'package:fluttertemplate/src/presentation/ui/bottom_bar_page/bottom_bar_page.dart';
 import 'package:fluttertemplate/src/presentation/ui/complete_page/complete_page.dart';
 import 'package:fluttertemplate/src/presentation/ui/home_detail_page/home_detail_page.dart';
 import 'package:fluttertemplate/src/presentation/ui/home_page/home_page.dart';
 import 'package:fluttertemplate/src/presentation/ui/incomplete_page/incomplete_page.dart';
+import 'package:fluttertemplate/src/presentation/widgets/base_view.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -23,29 +24,29 @@ class AppRouter {
             builder: (context, state, child) {
               return BlocProvider(
                 create: (context) => NavigationCubit(),
-                child: BottomBarPage(screen: child),
+                child: BaseView(body:BottomBarPage(screen: child)),
               );
             },
             routes: <RouteBase>[
               GoRoute(
                   path: Routes.homePage,
                   builder: (context, state) =>
-                      const  MyHomePage()),
+                      const  BaseView(body: MyHomePage())),
               GoRoute(
                   path: Routes.homeDetailPage,
-                  builder: (context, state) => const HomeDetailPage()),
+                  builder: (context, state) => const BaseView(body:HomeDetailPage())),
               GoRoute(
                   path: Routes.homeDetail1Page,
-                  builder: (context, state) => const HomeDetail1Page()),
+                  builder: (context, state) => const BaseView(body:HomeDetail1Page())),
               GoRoute(
                 path: Routes.inComplete,
                 pageBuilder: (context, state) =>
-                    const NoTransitionPage(child: InCompletePage()),
+                    const NoTransitionPage(child: BaseView(body:InCompletePage())),
               ),
               GoRoute(
                 path: Routes.complete,
                 pageBuilder: (context, state) =>
-                    const NoTransitionPage(child: CompletePage()),
+                    const NoTransitionPage(child: BaseView(body:CompletePage())),
               ),
 
             ])

@@ -30,7 +30,6 @@ class HomeCubit extends Cubit<HomeState> {
   }
   Future<void> handleTodoList({int? index}) async {
     final _items = doEditlist(index: index);
-    
     final bool isSave = await homeUseCase.saveTodoItemsLocal(_items);
     if (isSave) {
       emit(state.copyWith(items: _items));
