@@ -5,4 +5,6 @@ class Routes {
 
   static const inComplete = "/inComplete";
   static const complete = "/complete";
+  static const loginPage = "/loginPage";
+  static const onBoardingPage = "/onBoardingPage";
 }

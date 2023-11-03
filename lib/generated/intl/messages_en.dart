@@ -25,6 +25,19 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appName": MessageLookupByLibrary.simpleMessage("TodoList App"),
-        "helloWorld": m0
+        "chooseTypeCompany":
+            MessageLookupByLibrary.simpleMessage("Chọn loại hình công ty"),
+        "customerTarget":
+            MessageLookupByLibrary.simpleMessage("Customer Target"),
+        "helloWorld": m0,
+        "inputEmail":
+            MessageLookupByLibrary.simpleMessage("Input Email Address"),
+        "inputNameOfWorkUnit":
+            MessageLookupByLibrary.simpleMessage("Input Name of Work Unit"),
+        "nameOfWorkUnit":
+            MessageLookupByLibrary.simpleMessage("Name of Work Unit"),
+        "typeCompany": MessageLookupByLibrary.simpleMessage("Company Type "),
+        "worker": MessageLookupByLibrary.simpleMessage("Worker"),
+        "workingUnit": MessageLookupByLibrary.simpleMessage("Working Unit")
       };
 }

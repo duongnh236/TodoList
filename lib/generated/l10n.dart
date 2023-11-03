@@ -69,6 +69,86 @@ class S {
       args: [lastName, firstName],
     );
   }
+
+  /// `Customer Target`
+  String get customerTarget {
+    return Intl.message(
+      'Customer Target',
+      name: 'customerTarget',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Worker`
+  String get worker {
+    return Intl.message(
+      'Worker',
+      name: 'worker',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Working Unit`
+  String get workingUnit {
+    return Intl.message(
+      'Working Unit',
+      name: 'workingUnit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Input Email Address`
+  String get inputEmail {
+    return Intl.message(
+      'Input Email Address',
+      name: 'inputEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name of Work Unit`
+  String get nameOfWorkUnit {
+    return Intl.message(
+      'Name of Work Unit',
+      name: 'nameOfWorkUnit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Input Name of Work Unit`
+  String get inputNameOfWorkUnit {
+    return Intl.message(
+      'Input Name of Work Unit',
+      name: 'inputNameOfWorkUnit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Company Type `
+  String get typeCompany {
+    return Intl.message(
+      'Company Type ',
+      name: 'typeCompany',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Chọn loại hình công ty`
+  String get chooseTypeCompany {
+    return Intl.message(
+      'Chọn loại hình công ty',
+      name: 'chooseTypeCompany',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

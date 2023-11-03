@@ -25,6 +25,20 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appName": MessageLookupByLibrary.simpleMessage("TodoList App"),
-        "helloWorld": m0
+        "chooseTypeCompany":
+            MessageLookupByLibrary.simpleMessage("Chọn loại hình công ty"),
+        "customerTarget":
+            MessageLookupByLibrary.simpleMessage("Đối tượng khách hàng"),
+        "helloWorld": m0,
+        "inputEmail":
+            MessageLookupByLibrary.simpleMessage("Nhập địa chỉ email"),
+        "inputNameOfWorkUnit":
+            MessageLookupByLibrary.simpleMessage("Nhập Tên đơn vị công tác"),
+        "nameOfWorkUnit":
+            MessageLookupByLibrary.simpleMessage("Tên đơn vị công tác"),
+        "typeCompany":
+            MessageLookupByLibrary.simpleMessage("Loại hình công ty"),
+        "worker": MessageLookupByLibrary.simpleMessage("Người đi làm"),
+        "workingUnit": MessageLookupByLibrary.simpleMessage("Đơn vị công tác")
       };
 }

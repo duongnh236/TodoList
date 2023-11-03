@@ -10,5 +10,13 @@
       "firstName": {},
       "lastName": {}
     }
-  }
+  },
+  "customerTarget": "Customer Target",
+  "worker": "Worker",
+  "workingUnit": "Working Unit",
+  "inputEmail": "Input Email Address",
+  "nameOfWorkUnit": "Name of Work Unit",
+  "inputNameOfWorkUnit": "Input Name of Work Unit",
+  "typeCompany": "Company Type ",
+  "chooseTypeCompany": "Chọn loại hình công ty"
 }
