@@ -19,3 +19,9 @@ class BadRequestException implements Exception {
   String description;
   BadRequestException(this.description) : super();
 }
+
+class RestApiException implements Exception {
+  int status;
+  String message;
+  RestApiException(this.status, this.message);
+}

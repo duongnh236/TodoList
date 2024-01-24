@@ -17,8 +17,8 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passTextEditController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  OutlineInputBorder myinputborder(){ //return type is OutlineInputBorder
-    return OutlineInputBorder( //Outline border type for TextFeild
+  OutlineInputBorder myInputBorder(){ //return type is OutlineInputBorder
+    return const OutlineInputBorder( //Outline border type for TextFeild
         borderRadius: BorderRadius.all(Radius.circular(20)),
         borderSide: BorderSide(
           color:Colors.redAccent,
@@ -27,8 +27,8 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  OutlineInputBorder myfocusborder(){
-    return OutlineInputBorder(
+  OutlineInputBorder myFocusBorder(){
+    return const OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(20)),
         borderSide: BorderSide(
           color:Colors.greenAccent,
@@ -58,8 +58,8 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(
                       labelText: "Username",
                       prefixIcon: const Icon(Icons.people),
-                    enabledBorder: myinputborder(),
-                    focusedBorder: myfocusborder()
+                    enabledBorder: myInputBorder(),
+                    focusedBorder: myFocusBorder()
                   ),
                 ),
               ),
@@ -76,8 +76,8 @@ class _LoginPageState extends State<LoginPage> {
                   decoration:  InputDecoration(
                       prefixIcon: const Icon(Icons.lock),
                       labelText: "Password",
-                      enabledBorder: myinputborder(),
-                      focusedBorder: myfocusborder()
+                      enabledBorder: myInputBorder(),
+                      focusedBorder: myFocusBorder()
                   ),
                 ),
               ),

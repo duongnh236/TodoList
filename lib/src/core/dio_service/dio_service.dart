@@ -23,6 +23,7 @@ class ApiBaseCore {
   ApiBaseCore() {
     Dio dio = createDio();
     baseAPI = addInterceptors(dio);
+    
   }
 
   Dio addInterceptors(Dio dio) {

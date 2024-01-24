@@ -17,7 +17,11 @@ class BaseView extends StatefulWidget {
 class _BaseViewState extends State<BaseView> {
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
+    return PopScope(
+        canPop: false,
+        onPopInvoked: (value) {
+
+        },
         child: BlocBuilder<ThemeCubit, ChangeThemeState>(
           builder: (context, themeState) {
             return Scaffold(
@@ -28,9 +32,6 @@ class _BaseViewState extends State<BaseView> {
                   ),
                 ));
           },
-        ),
-        onWillPop: () async {
-          return false;
-        });
+        ));
   }
 }

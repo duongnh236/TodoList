@@ -17,58 +17,58 @@ class AppRouter {
   static final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
   static final GoRouter _router = GoRouter(
-      initialLocation: Routes.loginPage,
+      initialLocation: Routes.homePage,
       debugLogDiagnostics: true,
       navigatorKey: _rootNavigatorKey,
       routes: [
-        GoRoute(
-          path: Routes.loginPage,
-          pageBuilder: (context, state) =>
-          const NoTransitionPage(child: BaseView(body:LoginPage())),
-        ),
-        GoRoute(
-          path: Routes.onBoardingPage,
-          pageBuilder: (context, state) =>
-          const NoTransitionPage(child: BaseView(body:OnBoardingPage())),
-        )
+        // GoRoute(
+        //   path: Routes.loginPage,
+        //   pageBuilder: (context, state) =>
+        //   const NoTransitionPage(child: BaseView(body:LoginPage())),
+        // ),
+        // GoRoute(
+        //   path: Routes.onBoardingPage,
+        //   pageBuilder: (context, state) =>
+        //   const NoTransitionPage(child: BaseView(body:OnBoardingPage())),
+        // )
 
-        /// config have bottom bar
-        // ShellRoute(
-        //     navigatorKey: _shellNavigatorKey,
-        //     builder: (context, state, child) {
-        //       return BlocProvider(
-        //         create: (context) => NavigationCubit(),
-        //         child: BaseView(body:BottomBarPage(screen: child)),
-        //       );
-        //     },
-        //     routes: <RouteBase>[
-        //       GoRoute(
-        //           path: Routes.homePage,
-        //           builder: (context, state) =>
-        //               const  BaseView(body: MyHomePage())),
-        //       GoRoute(
-        //           path: Routes.homeDetailPage,
-        //           builder: (context, state) => const BaseView(body:HomeDetailPage())),
-        //       GoRoute(
-        //           path: Routes.homeDetail1Page,
-        //           builder: (context, state) => const BaseView(body:HomeDetail1Page())),
-        //       GoRoute(
-        //         path: Routes.inComplete,
-        //         pageBuilder: (context, state) =>
-        //             const NoTransitionPage(child: BaseView(body:InCompletePage())),
-        //       ),
-        //       GoRoute(
-        //         path: Routes.complete,
-        //         pageBuilder: (context, state) =>
-        //             const NoTransitionPage(child: BaseView(body:CompletePage())),
-        //       ),
-        //       GoRoute(
-        //         path: Routes.loginPage,
-        //         pageBuilder: (context, state) =>
-        //         const NoTransitionPage(child: BaseView(body:LoginPage())),
-        //       )
-        //
-        //     ])
+        // config have bottom bar
+        ShellRoute(
+            navigatorKey: _shellNavigatorKey,
+            builder: (context, state, child) {
+              return BlocProvider(
+                create: (context) => NavigationCubit(),
+                child: BaseView(body:BottomBarPage(screen: child)),
+              );
+            },
+            routes: <RouteBase>[
+              GoRoute(
+                  path: Routes.homePage,
+                  builder: (context, state) =>
+                      const  BaseView(body: MyHomePage())),
+              GoRoute(
+                  path: Routes.homeDetailPage,
+                  builder: (context, state) => const BaseView(body:HomeDetailPage())),
+              GoRoute(
+                  path: Routes.homeDetail1Page,
+                  builder: (context, state) => const BaseView(body:HomeDetail1Page())),
+              GoRoute(
+                path: Routes.inComplete,
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: BaseView(body:InCompletePage())),
+              ),
+              GoRoute(
+                path: Routes.complete,
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: BaseView(body:CompletePage())),
+              ),
+              GoRoute(
+                path: Routes.loginPage,
+                pageBuilder: (context, state) =>
+                const NoTransitionPage(child: BaseView(body:LoginPage())),
+              )
+        
+            ])
       ]);
 
   static GoRouter get router => _router;

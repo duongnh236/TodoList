@@ -18,7 +18,9 @@ class MyHomePage extends StatefulWidget {
 
 class MyHomePageState extends State<MyHomePage>
     with AutomaticKeepAliveClientMixin {
-  void _showPopup(BuildContext context) {
+
+      bool isVN = false;
+  void _showPopup() {
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -31,9 +33,23 @@ class MyHomePageState extends State<MyHomePage>
         });
   }
 
+  Widget _buildChangeLanguage() {
+    return Switch(
+      // This bool value toggles the switch.
+      value: isVN,
+      activeColor: Colors.red,
+      onChanged: (bool value) {
+        // This is called when the user toggles the switch.
+        setState(()  {
+            isVN = !isVN;
+            S.load(Locale(isVN == true ? 'vi' : 'en'));
+        });
+      },
+    );
+  }
   @override
   void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context.read<HomeCubit>().getTodoItems();
     });
     super.initState();
@@ -46,45 +62,66 @@ class MyHomePageState extends State<MyHomePage>
           key: const Key('AppBar-HomePage'),
           title: Text(S.of(context).helloWorld('Dương', 'Nguyễn Hải ')),
           actions: <Widget>[
-            TextButton(
-              key: const Key('TextButton-HomePage'),
-              onPressed: () async {
-                await S.load(const Locale('en'));
-                _showPopup(context);
-              },
-              child: const Icon(Icons.add, color: Colors.white, size: 30),
+            Container(
+              color: Colors.red,
+              child: TextButton(
+                
+                key: const Key('TextButton-HomePage'),
+                onPressed: () async {
+                  _showPopup();
+                },
+                child: const Icon(Icons.add, color: Colors.white, size: 30),
+              ),
             ),
+            _buildChangeLanguage()
           ],
         ),
         body: Column(
           children: <Widget>[
             Expanded(
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
                       color: Colors.red,
-                      height: 100,
+                      height: 50,
                       width: 100,
-                      child: ElevatedButton(
-                          onPressed: (() {
+                      child: InkWell(
+                          onTap: (() {
                             context.read<ThemeCubit>().changeToDarkTheme();
                           }),
-                          child: const Text("Dark to light")),
+                          child: const Center(child:  Text("Dark to light"))),
                     ),
                     const SizedBox(width: 20),
                     Container(
                       color: Colors.red,
-                      height: 100,
+                      height: 50,
                       width: 100,
-                      child: ElevatedButton(
-                          onPressed: (() {
+                      child: InkWell(
+                          onTap: (() {
                             context.read<ThemeCubit>().changeToLightTheme();
                           }),
-                          child: const Text("Light to Dark")),
+                          child:  const Center(child: Text("Light to Dark"))),
                     )
                   ],
                 )),
-            ListViewTest()
+
+              const SizedBox(height: 50),
+              InkWell(
+                onTap: () async {
+               await context.read<HomeCubit>().testApi();
+
+                },
+                child: Container(
+                  height: 50,
+                  width: 100,
+                  color: Colors.red,
+                  child: const Text('TestApi'),
+                ),
+              ),
+             const SizedBox(height: 50),
+            const ListViewTest()
           ],
         ));
   }

@@ -1,6 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertemplate/src/core/helper/failure.dart';
+import 'package:fluttertemplate/src/domain/entities/activity_entity.dart';
 import 'package:fluttertemplate/src/domain/use_case/home_usecase/home_usercase.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_state.dart';
+import 'package:fpdart/fpdart.dart';
 import '../../../domain/entities/todo_item_entity.dart';
 
 class HomeCubit extends Cubit<HomeState> {
@@ -49,7 +52,13 @@ class HomeCubit extends Cubit<HomeState> {
       emit(HomeErrorState('please try again', items!));
     }
   }
+
   Future<bool> isHasData() async {
     return await homeUseCase.isHasData();
+  }
+
+  Future<void> testApi() async {
+    final result = await homeUseCase.testApi();
+    print(result);
   }
 }
