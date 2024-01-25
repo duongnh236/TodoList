@@ -67,19 +67,19 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 20),
                 child: Icon(Icons.arrow_back_outlined),
               ),
               Text(
                 S.of(context).workingUnit,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontStyle: FontStyle.normal, fontSize: 17),
+                style: const TextStyle(fontStyle: FontStyle.normal, fontSize: 17),
               ),
-              SizedBox(width: 32)
+              const SizedBox(width: 32)
             ],
           )),
-          Divider(
+          const Divider(
             color: Colors.black,
           )
         ],
