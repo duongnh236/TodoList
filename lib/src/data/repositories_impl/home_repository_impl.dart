@@ -37,13 +37,13 @@ class HomeRepositoryImpl extends HomeRepository {
 
   @override
   Future<Either<Failure, Activity>> testApi() async {
-    final data = await homeService.testApi();
     try {
+      final data = await homeService.testApi();
       return Either.right(data);
     } on RestApiException catch (e) {
-      return Either.left(ConnectionFailure(e.status, e.message));
+      return Either.left(ConnectionFailure(e.status ?? 0, e.message ?? '', e.typeEx ?? ''));
     } catch (e) {
-      return Either.left(const ParsingFailure('errro'));
+      return Either.left(const ParsingFailure(400,'',''));
     }
   }
   

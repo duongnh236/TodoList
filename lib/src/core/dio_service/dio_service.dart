@@ -12,6 +12,7 @@ class ApiBaseCore {
   final BaseOptions opts = BaseOptions(
     baseUrl: ApiRouteHelper.getBaseUrl(),
     responseType: ResponseType.json,
+    headers: {},
     connectTimeout: const Duration(seconds: 10),
     receiveTimeout: const Duration(seconds: 10),
   );
@@ -23,7 +24,7 @@ class ApiBaseCore {
   ApiBaseCore() {
     Dio dio = createDio();
     baseAPI = addInterceptors(dio);
-    
+
   }
 
   Dio addInterceptors(Dio dio) {
@@ -137,30 +138,33 @@ class ApiBaseCore {
   handleError(DioException error) {
     switch (error.type) {
       case DioExceptionType.connectionTimeout:
-        throw const NoInternetConnectionException();
+        throw  NoInternetConnectionException(error.message, error.response?.statusCode ?? 0, error.type.name);
       case DioExceptionType.sendTimeout:
-        throw const NoInternetConnectionException();
+        throw  TimeoutException(error.message, error.response?.statusCode ?? 0, error.type.name);
       case DioExceptionType.receiveTimeout:
-        throw const NoInternetConnectionException();
+        throw  ReceiveTimeoutException(error.message, error.response?.statusCode ?? 0, error.type.name);
       case DioExceptionType.badResponse:
         if (error.response == null) {
-          throw BadRequestException("");
+        throw  BadResponseException(error.message, error.response?.statusCode ?? 0, error.type.name);
         }
         switch (error.response?.statusCode) {
           case 401:
-            throw const UnauthorizedException();
+           throw  UnauthorizedException(error.message, error.response?.statusCode ?? 0, error.type.name);
+
           case 400:
-            throw BadRequestException("");
+           throw  BadRequestException(error.message, error.response?.statusCode ?? 0, error.type.name);
           case 404:
-            throw const NotFoundEndPointException();
+            throw  NotFoundEndPointException(error.message, error.response?.statusCode ?? 0, error.type.name);
           case 500:
-            throw InternalServerErrorException();
+            throw  InternalServerErrorException(error.message, error.response?.statusCode ?? 0, error.type.name);
         }
         break;
       case DioExceptionType.cancel:
-        break;
+        throw  RestApiException(typeEx: error.type.name,status: 0, message: error.message);
+        
       default:
-        throw BadRequestException("Unknown error");
+        throw  RestApiException(typeEx: 'Unknown error',status: 404, message: error.message);
+
     }
   }
 }
