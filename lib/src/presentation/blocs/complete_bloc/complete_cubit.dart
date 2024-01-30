@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertemplate/src/data/source/local/models/todo_isar.dart';
 import 'package:fluttertemplate/src/presentation/blocs/complete_bloc/complete_state.dart';
 import '../../../domain/entities/todo_item_entity.dart';
 
@@ -6,8 +7,8 @@ class CompleteCubit extends Cubit<CompleteState> {
   CompleteCubit() : super(CompleteInitial());
 
 
-  void getItems({List<ToDoItemEntity>? items}) {
-    final List<ToDoItemEntity> _items = items!.where((element) => element.isChecked == true).toList();
+  void getItems({List<TodoIsar>? items}) {
+    final List<TodoIsar> _items = items!.where((element) => element.isChecked == true).toList();
     emit(CompleteInitial(items: _items));
   }
 

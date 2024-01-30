@@ -1,6 +1,7 @@
 import 'package:fluttertemplate/src/core/dio_service/dio_service.dart';
 import 'package:fluttertemplate/src/data/repositories_impl/home_repository_impl.dart';
 import 'package:fluttertemplate/src/data/source/local/hive/hive_datasource.dart';
+import 'package:fluttertemplate/src/data/source/local/isar/isar_service.dart';
 import 'package:fluttertemplate/src/data/source/remote/home_service.dart';
 import 'package:fluttertemplate/src/domain/use_case/home_usecase/home_usercase.dart';
 import 'package:fluttertemplate/src/presentation/blocs/bottom_bar_bloc/bottom_bar_cubit.dart';
@@ -18,7 +19,8 @@ Future<void> setup() async {
   getIt.registerSingleton<ApiBaseCore>(ApiBaseCore());
   getIt.registerSingleton<HomeService>(HomeService(getIt.get<ApiBaseCore>()));
   getIt.registerSingleton<HiveDataSource>(HiveDataSource());
-  getIt.registerSingleton<HomeRepositoryImpl>(HomeRepositoryImpl(getIt.get<HiveDataSource>(),getIt.get<HomeService>()));
+  getIt.registerSingleton<IsarService>(IsarService());
+  getIt.registerSingleton<HomeRepositoryImpl>(HomeRepositoryImpl(getIt.get<HiveDataSource>(),getIt.get<HomeService>(), getIt.get<IsarService>()));
   getIt.registerSingleton<HomeUseCase>(HomeUseCase(getIt.get<HomeRepositoryImpl>()));
   getIt.registerSingleton<HomeCubit>(HomeCubit(getIt.get<HomeUseCase>()));
 

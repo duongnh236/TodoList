@@ -6,10 +6,10 @@
 import 'dart:async' as _i4;
 
 import 'package:fluttertemplate/src/core/helper/failure.dart' as _i7;
+import 'package:fluttertemplate/src/data/source/local/models/todo_isar.dart'
+    as _i5;
 import 'package:fluttertemplate/src/domain/entities/activity_entity.dart'
     as _i8;
-import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart'
-    as _i5;
 import 'package:fluttertemplate/src/domain/repositories/home_repository/home_repository.dart'
     as _i2;
 import 'package:fpdart/fpdart.dart' as _i6;
@@ -60,18 +60,16 @@ class MockMockHomeUseCase extends _i1.Mock implements _i3.MockHomeUseCase {
       ) as _i2.HomeRepository);
 
   @override
-  _i4.Future<List<_i5.ToDoItemEntity>> getTodoItemsLocal() =>
-      (super.noSuchMethod(
+  _i4.Future<List<_i5.TodoIsar>> getTodoItemsLocal() => (super.noSuchMethod(
         Invocation.method(
           #getTodoItemsLocal,
           [],
         ),
-        returnValue:
-            _i4.Future<List<_i5.ToDoItemEntity>>.value(<_i5.ToDoItemEntity>[]),
-      ) as _i4.Future<List<_i5.ToDoItemEntity>>);
+        returnValue: _i4.Future<List<_i5.TodoIsar>>.value(<_i5.TodoIsar>[]),
+      ) as _i4.Future<List<_i5.TodoIsar>>);
 
   @override
-  _i4.Future<bool> saveTodoItemsLocal(List<_i5.ToDoItemEntity>? items) =>
+  _i4.Future<bool> saveTodoItemsLocal(List<_i5.TodoIsar>? items) =>
       (super.noSuchMethod(
         Invocation.method(
           #saveTodoItemsLocal,

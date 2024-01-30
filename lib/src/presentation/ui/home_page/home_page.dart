@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertemplate/src/data/source/local/models/todo_isar.dart';
 import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_state.dart';
@@ -140,7 +141,7 @@ class ListViewTest extends StatefulWidget {
 
 class _ListViewTestState extends State<ListViewTest> {
   Widget _buildItem(
-      ToDoItemEntity toDoItemEntity, Function(int index) ontap, int index) {
+      TodoIsar toDoItemEntity, Function(int index) ontap, int index) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       height: 50,

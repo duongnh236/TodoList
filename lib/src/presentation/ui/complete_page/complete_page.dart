@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertemplate/src/data/source/local/models/todo_isar.dart';
 import 'package:fluttertemplate/src/presentation/blocs/complete_bloc/complete_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/complete_bloc/complete_state.dart';
 import '../../../domain/entities/todo_item_entity.dart';
@@ -15,7 +16,7 @@ class CompletePage extends StatefulWidget {
 
 class _CompletePageState extends State<CompletePage> with AutomaticKeepAliveClientMixin {
 
-  Widget _buildItem(ToDoItemEntity toDoItemEntity, Function(int index) ontap, int index) {
+  Widget _buildItem(TodoIsar toDoItemEntity, Function(int index) ontap, int index) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       height: 50,
@@ -42,7 +43,7 @@ class _CompletePageState extends State<CompletePage> with AutomaticKeepAliveClie
 
   @override
   void initState() {
-    final List<ToDoItemEntity> _items = context.read<HomeCubit>().items!;
+    final List<TodoIsar> _items = context.read<HomeCubit>().items!;
     context.read<CompleteCubit>().getItems(items: _items);
     super.initState();
   }

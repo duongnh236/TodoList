@@ -1,15 +1,16 @@
 import 'package:equatable/equatable.dart';
+import 'package:fluttertemplate/src/data/source/local/models/todo_isar.dart';
 import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
 
  class HomeState extends Equatable{
    // final bool? isCheck;
-   final  List<ToDoItemEntity>? items;
+   final  List<TodoIsar>? items;
    const HomeState({ this.items});
 
 
    HomeState copyWith({
     // bool? isCheck,
-    List<ToDoItemEntity>? items,
+    List<TodoIsar>? items,
   }) {
     return HomeState(
       // isCheck: isCheck ?? this.isCheck,
@@ -37,7 +38,7 @@ class HomeInitialState extends HomeState {
 
 class HomeErrorState extends HomeState {
   final String errorMesg;
-  final List<ToDoItemEntity> items;
+  final List<TodoIsar> items;
 
    HomeErrorState(this.errorMesg, this.items);
 
@@ -65,7 +66,7 @@ class HomeClick1 extends HomeState {
 
 class HomeHandleStatusItemState extends HomeState {
   // @override
-  final List<ToDoItemEntity>? items;
+  final List<TodoIsar>? items;
   HomeHandleStatusItemState({this.items}) : super(items: items);
 
   // HomeHandleStatusItemState copyWith({

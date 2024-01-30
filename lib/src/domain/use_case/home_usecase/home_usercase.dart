@@ -1,4 +1,5 @@
 import 'package:fluttertemplate/src/core/helper/failure.dart';
+import 'package:fluttertemplate/src/data/source/local/models/todo_isar.dart';
 import 'package:fluttertemplate/src/domain/entities/activity_entity.dart';
 import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
 import 'package:fluttertemplate/src/domain/repositories/home_repository/home_repository.dart';
@@ -9,10 +10,10 @@ class HomeUseCase {
   HomeUseCase(this.homeRepository);
   final HomeRepository homeRepository;
 
-  Future<List<ToDoItemEntity>> getTodoItemsLocal() async {
+  Future<List<TodoIsar>> getTodoItemsLocal() async {
     return await homeRepository.getTodoItemsLocal();
   }
-  Future<bool> saveTodoItemsLocal(List<ToDoItemEntity> items) async {
+  Future<bool> saveTodoItemsLocal(List<TodoIsar> items) async {
     return await homeRepository.saveTodoItemsLocal(items);
   }
   Future<bool> isHasData() async {

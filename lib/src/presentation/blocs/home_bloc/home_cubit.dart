@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertemplate/src/core/exception/exception.dart';
+import 'package:fluttertemplate/src/data/source/local/models/todo_isar.dart';
 import 'package:fluttertemplate/src/domain/entities/activity_entity.dart';
 import 'package:fluttertemplate/src/domain/use_case/home_usecase/home_usercase.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_state.dart';
@@ -9,7 +10,7 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this.homeUseCase) : super(HomeInitialState());
 
   final HomeUseCase homeUseCase;
-  late List<ToDoItemEntity>? items = [];
+  late List<TodoIsar>? items = [];
   Future<void> getTodoItems() async {
     if (await isHasData()) {
       items = await homeUseCase.getTodoItemsLocal();
@@ -26,7 +27,7 @@ class HomeCubit extends Cubit<HomeState> {
     // emit(newState);
     // emit(HomeClick1(isChecked: isCheck));
   }
-  List<ToDoItemEntity> doEditlist({int? index}) {
+  List<TodoIsar> doEditlist({int? index}) {
     items?[index ?? 0] = items![index ?? 0].copyWith(isChecked: !items![index ?? 0].isChecked! );
     return List.of(items!);
   }
@@ -41,7 +42,7 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> createTask({String? taskName}) async {
-    final ToDoItemEntity todoTask = ToDoItemEntity(isChecked: false, name: taskName ?? '');
+    final TodoIsar todoTask = TodoIsar(isChecked: false, name: taskName ?? '');
     items!.add(todoTask);
     final bool isSave = await homeUseCase.saveTodoItemsLocal(items!);
     if (isSave) {
