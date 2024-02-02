@@ -1,14 +1,9 @@
-
-import 'package:fluttertemplate/src/core/dio_service/dio_service.dart';
-import 'package:fluttertemplate/src/core/dio_service/rest_client.dart';
 import 'package:fluttertemplate/src/core/exception/exception.dart';
 import 'package:fluttertemplate/src/core/helper/failure.dart';
 import 'package:fluttertemplate/src/data/source/local/isar/isar_service.dart';
 import 'package:fluttertemplate/src/data/source/local/models/todo_isar.dart';
-import 'package:fluttertemplate/src/data/source/local/models/todo_item.dart';
 import 'package:fluttertemplate/src/data/source/remote/home_service.dart';
 import 'package:fluttertemplate/src/domain/entities/activity_entity.dart';
-import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
 import 'package:fluttertemplate/src/domain/repositories/home_repository/home_repository.dart';
 import 'package:fpdart/src/either.dart';
 import '../source/local/hive/hive_datasource.dart';
@@ -20,9 +15,6 @@ class HomeRepositoryImpl extends HomeRepository {
   final IsarService isarService;
   @override
   Future<List<TodoIsar>> getTodoItemsLocal() async {
-    // final List<TodoItemHive> todoItemsHive =  await hiveDataSource.getAllTodoItems();
-    // final List<ToDoItemEntity> todoEntities = todoItemsHive.map((e) => ToDoItemEntity(name: e.name, isChecked: e.isChecked)).toList();
-    // return todoEntities;
     final List<TodoIsar> todoItems = await isarService.getAll<TodoIsar>();
     final List<TodoIsar> todoEntities = todoItems.map((e) => TodoIsar(name: e.name, isChecked: e.isChecked)).toList();
     return todoEntities;
@@ -30,20 +22,14 @@ class HomeRepositoryImpl extends HomeRepository {
 
   @override
   Future<bool> saveTodoItemsLocal(List<TodoIsar> items) async  {
-    // final List<TodoItemHive> itemsHive = items.map((e) => TodoItemHive()..isChecked = e.isChecked
-    //                                                                     ..name = e.name).toList();
-    // await hiveDataSource.saveTodoItems(itemsHive);
     final List<TodoIsar> _items = items.map((e) => TodoIsar()..isChecked = e.isChecked
                                                                         ..name = e.name).toList();
-
     await isarService.saveList<TodoIsar>(_items);
     return Future.value(true);
   }
 
   @override
   Future<bool> isHasData() async {
-    // return await hiveDataSource.hasData();
-    // isarService.openDB();
     return await isarService.hasData<TodoIsar>();
   }
 

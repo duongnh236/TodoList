@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fluttertemplate/src/data/source/local/models/todo_isar.dart';
 import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
 import 'package:fluttertemplate/src/domain/use_case/home_usecase/home_usercase.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_cubit.dart';
@@ -20,8 +21,8 @@ void main() {
     homeCubit = HomeCubit(mockHomeUseCase);
 
     homeCubit.items = [
-      ToDoItemEntity(name: 'a', isChecked: true),
-      ToDoItemEntity(name: 'b', isChecked: false)
+      TodoIsar(name: 'a', isChecked: true),
+      TodoIsar(name: 'b', isChecked: false)
     ];
   });
 
@@ -38,24 +39,24 @@ void main() {
       when(mockHomeUseCase.isHasData()).thenAnswer((_) => Future.value(true));
       when(mockHomeUseCase.getTodoItemsLocal())
           .thenAnswer((realInvocation) => Future.value([
-                ToDoItemEntity(isChecked: true, name: 'aaa'),
-                ToDoItemEntity(isChecked: true, name: 'bbb')
+                TodoIsar(isChecked: true, name: 'aaa'),
+                TodoIsar(isChecked: true, name: 'bbb')
               ]));
       await homeCubit.getTodoItems();
       expect(homeCubit.items!.length, 2);
-      expect(homeCubit.state.runtimeType, HomeHandleStatusItemState);
+      expect(homeCubit.state.runtimeType, HomeState);
     });
 
     test('Should call getTodoItemsLocal when isHasData return false', () async {
       when(mockHomeUseCase.isHasData()).thenAnswer((_) => Future.value(false));
       when(mockHomeUseCase.getTodoItemsLocal())
           .thenAnswer((realInvocation) => Future.value([
-                ToDoItemEntity(isChecked: true, name: 'aaa'),
-                ToDoItemEntity(isChecked: true, name: 'bbb')
+                TodoIsar(isChecked: true, name: 'aaa'),
+                TodoIsar(isChecked: true, name: 'bbb')
               ]));
       await homeCubit.getTodoItems();
       expect(homeCubit.items!.length, 0);
-      expect(homeCubit.state.runtimeType, HomeHandleStatusItemState);
+      expect(homeCubit.state.runtimeType, HomeState);
     });
   });
   group('homeCubit test createTask()', () {
@@ -63,7 +64,8 @@ void main() {
       when(mockHomeUseCase.saveTodoItemsLocal(any))
           .thenAnswer((_) => Future.value(true));
       await homeCubit.createTask(taskName: 'eqqq');
-      expect(homeCubit.state.runtimeType, HomeHandleStatusItemState);
+      expect(homeCubit.items!.length, 3);
+      expect(homeCubit.state.runtimeType,  HomeState);
       verify(mockHomeUseCase.saveTodoItemsLocal(any)).called(1);
     });
 
@@ -84,7 +86,9 @@ void main() {
       when(mockHomeUseCase.saveTodoItemsLocal(any))
           .thenAnswer((_) => Future.value(true));
       await homeCubit.handleTodoList(index: 0);
-      expect(homeCubit.state.runtimeType, HomeHandleStatusItemState);
+
+      expect(homeCubit.items!.length, 2);
+      expect(homeCubit.state.runtimeType, HomeState);
       verify(mockHomeUseCase.saveTodoItemsLocal(any)).called(1);
     });
 
@@ -108,8 +112,8 @@ void main() {
   });
 
   group('test HomeCubit', () {
-    final List<ToDoItemEntity> itemsResponse = [
-      ToDoItemEntity(isChecked: true, name: 'aaa')
+    final List<TodoIsar> itemsResponse = [
+      TodoIsar(isChecked: true, name: 'aaa')
     ];
     blocTest<HomeCubit, HomeState>('Should call getTodoItemsLocal return value',
         build: () {
@@ -120,7 +124,7 @@ void main() {
         },
         act: (cubit) => cubit.getTodoItems(),
         expect: () => [
-              isA<HomeHandleStatusItemState>(),
+              isA<HomeState>(),
             ]);
 
     blocTest<HomeCubit, HomeState>(
@@ -138,7 +142,7 @@ void main() {
           return await cubit.handleTodoList(index: 0);
         },
         expect: () => [
-              isA<HomeHandleStatusItemState>(),isA<HomeErrorState>(),
+              isA<HomeState>(),isA<HomeErrorState>(),
           // HomeHandleStatusItemState(itemsResponse), HomeErrorState('', itemsResponse)
             ]);
 
@@ -157,7 +161,7 @@ void main() {
           return await cubit.handleTodoList(index: 0);
         },
         expect: () => [
-              isA<HomeHandleStatusItemState>(),isA<HomeHandleStatusItemState>(),
+              isA<HomeState>(),isA<HomeState>(),
             ]);
   });
 }

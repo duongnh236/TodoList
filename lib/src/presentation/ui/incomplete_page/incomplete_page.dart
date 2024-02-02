@@ -5,7 +5,6 @@ import 'package:fluttertemplate/src/data/source/local/models/todo_isar.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/incomplete_bloc/incomplete_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/incomplete_bloc/incomplete_state.dart';
-import '../../../domain/entities/todo_item_entity.dart';
 
 class InCompletePage extends StatefulWidget {
 

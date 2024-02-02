@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluttertemplate/generated/l10n.dart';
+import 'package:fluttertemplate/src/data/source/local/models/todo_isar.dart';
 import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
 import 'package:fluttertemplate/src/domain/use_case/home_usecase/home_usercase.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_cubit.dart';
@@ -23,8 +24,8 @@ void main() {
     when(mockHomeUseCase.isHasData()).thenAnswer((_) async => true);
     when(mockHomeUseCase.getTodoItemsLocal())
         .thenAnswer((_) async => [
-      ToDoItemEntity(isChecked: true, name: 'aaa'),
-      ToDoItemEntity(isChecked: true, name: 'bbb')
+      TodoIsar(isChecked: true, name: 'aaa'),
+      TodoIsar(isChecked: true, name: 'bbb')
     ]);
   });
 

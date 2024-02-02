@@ -30,7 +30,7 @@ class ApiBaseCore {
   Dio addInterceptors(Dio dio) {
     return dio
       ..interceptors.add(
-        InterceptorsWrapper(
+        QueuedInterceptorsWrapper(
           onRequest:
               (RequestOptions options, RequestInterceptorHandler handler) {
             requestInterceptor(options, handler);
@@ -58,6 +58,7 @@ class ApiBaseCore {
           throw const RefreshTokenExpiredException();
         }
         Dio dio = Dio(opts);
+        
         Response<dynamic> response = await dio.post(
           ApiRouteConstants.refreshTokenPath,
           data: {
