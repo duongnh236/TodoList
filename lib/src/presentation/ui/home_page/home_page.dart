@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertemplate/src/data/source/local/models/todo_isar.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_state.dart';
@@ -85,19 +86,19 @@ class MyHomePageState extends State<MyHomePage>
                   children: [
                     Container(
                       color: Colors.red,
-                      height: 50,
-                      width: 100,
+                      height: 50.h,
+                      width: 100.w,
                       child: InkWell(
                           onTap: (() {
                             context.read<ThemeCubit>().changeToDarkTheme();
                           }),
                           child: const Center(child:  Text("Dark to light"))),
                     ),
-                    const SizedBox(width: 20),
+                    SizedBox(width: 20.w),
                     Container(
                       color: Colors.red,
-                      height: 50,
-                      width: 100,
+                      height: 50.h,
+                      width: 100.w,
                       child: InkWell(
                           onTap: (() {
                             context.read<ThemeCubit>().changeToLightTheme();
@@ -107,20 +108,20 @@ class MyHomePageState extends State<MyHomePage>
                   ],
                 )),
 
-              const SizedBox(height: 50),
+              SizedBox(height: 50.h),
               InkWell(
                 onTap: () async {
                await context.read<HomeCubit>().testApi();
 
                 },
                 child: Container(
-                  height: 50,
-                  width: 100,
+                  height: 50.h,
+                  width: 100.w,
                   color: Colors.red,
                   child: const Text('TestApi'),
                 ),
               ),
-             const SizedBox(height: 50),
+              SizedBox(height: 50.h),
             const ListViewTest()
           ],
         ));
@@ -143,8 +144,8 @@ class _ListViewTestState extends State<ListViewTest> {
       TodoIsar toDoItemEntity, Function(int index) ontap, int index) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30),
-      height: 50,
-      width: 200,
+      height: 50.h,
+      width: 200.w,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -157,7 +158,7 @@ class _ListViewTestState extends State<ListViewTest> {
               toDoItemEntity.isChecked ?? false
                   ? Icons.check_box
                   : Icons.check_box_outline_blank_outlined,
-              size: 30.0,
+              size: 30.sp,
               color:
                   toDoItemEntity.isChecked ?? false ? Colors.blue : Colors.blue,
             ),
@@ -181,7 +182,7 @@ class _ListViewTestState extends State<ListViewTest> {
         buildWhen: (previous, current) => previous.items != current.items,
         builder: (context, state) {
           return SizedBox(
-            height: 300,
+            height: 300.h,
             child: ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
                   return _buildItem(state.items![index], (index) async {

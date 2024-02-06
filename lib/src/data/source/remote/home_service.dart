@@ -1,8 +1,5 @@
 
 import 'dart:developer';
-
-import 'package:dio/dio.dart';
-import 'package:fluttertemplate/src/core/dio_service/dio_error.dart';
 import 'package:fluttertemplate/src/core/dio_service/dio_service.dart';
 import 'package:fluttertemplate/src/core/exception/exception.dart';
 import 'package:fluttertemplate/src/domain/entities/activity_entity.dart';

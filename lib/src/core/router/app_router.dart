@@ -8,7 +8,6 @@ import 'package:fluttertemplate/src/presentation/ui/home_detail_page/home_detail
 import 'package:fluttertemplate/src/presentation/ui/home_page/home_page.dart';
 import 'package:fluttertemplate/src/presentation/ui/incomplete_page/incomplete_page.dart';
 import 'package:fluttertemplate/src/presentation/ui/login_page/login_page.dart';
-import 'package:fluttertemplate/src/presentation/ui/on_boarding_page/on_boarding_page.dart';
 import 'package:fluttertemplate/src/presentation/widgets/base_view.dart';
 import 'package:go_router/go_router.dart';
 

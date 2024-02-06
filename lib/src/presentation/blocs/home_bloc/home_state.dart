@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:fluttertemplate/src/data/source/local/models/todo_isar.dart';
-import 'package:fluttertemplate/src/domain/entities/todo_item_entity.dart';
 
  class HomeState extends Equatable{
    // final bool? isCheck;

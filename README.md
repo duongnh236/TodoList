@@ -15,3 +15,7 @@ This project is a starting point for a Flutter application.
 
 Isar tutorial:
 - https://codeberg.org/Flutter-Explained/isar-db-tutorial/src/branch/main/lib
+
+To add integration_test folder
+- create file build.yaml 
+- command driver test : flutter driver \ --driver=test_driver/integration_test.dart \ --target=integration_test/ho_use_case_mock.dart \ -d emulator-5554

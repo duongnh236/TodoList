@@ -1,11 +1,8 @@
-import 'dart:math';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertemplate/src/core/exception/exception.dart';
 import 'package:fluttertemplate/src/data/source/local/models/todo_isar.dart';
 import 'package:fluttertemplate/src/domain/entities/activity_entity.dart';
 import 'package:fluttertemplate/src/domain/use_case/home_usecase/home_usercase.dart';
 import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_state.dart';
-import '../../../domain/entities/todo_item_entity.dart';
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this.homeUseCase) : super(HomeInitialState());
 
