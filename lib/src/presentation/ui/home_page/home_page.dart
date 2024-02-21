@@ -185,7 +185,7 @@ class _ListViewTestState extends State<ListViewTest> {
             height: 300.h,
             child: ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
-                  return _buildItem(state.items![index], (index) async {
+                  return _buildItem(state.items![index]!, (index) async {
                     await context
                         .read<HomeCubit>()
                         .handleTodoList(index: index);

@@ -4,8 +4,8 @@ import 'package:fluttertemplate/src/domain/entities/activity_entity.dart';
 import 'package:fpdart/fpdart.dart';
 
 abstract class HomeRepository {
-  Future<List<TodoIsar>> getTodoItemsLocal();
-  Future<bool> saveTodoItemsLocal(List<TodoIsar> items);
+  Future<List<TodoIsar?>> getTodoItemsLocal();
+  Future<bool> saveTodoItemsLocal(List<TodoIsar?> items);
   Future<bool> isHasData();
   Future<Either<Failure, Activity>> testApi();
 }

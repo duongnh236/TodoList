@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:fluttertemplate/src/core/exception/auth_exception.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import '../constants/api_route_constants.dart';
 import '../exception/exception.dart';
 import '../helper/api_route_helper.dart';
@@ -8,6 +9,7 @@ import '../helper/auth_helper.dart';
 
 class ApiBaseCore {
   late Dio baseAPI;
+  String? get urlString => baseAPI.options.baseUrl;
 
   final BaseOptions opts = BaseOptions(
     baseUrl: ApiRouteHelper.getBaseUrl(),
@@ -24,7 +26,6 @@ class ApiBaseCore {
   ApiBaseCore() {
     Dio dio = createDio();
     baseAPI = addInterceptors(dio);
-
   }
 
   Dio addInterceptors(Dio dio) {
@@ -91,6 +92,10 @@ class ApiBaseCore {
   Future<Response?> getHTTP(String path,
       {Map<String, dynamic>? queryParameters}) async {
     try {
+      
+      // var baseUrrl = baseAPI.options.baseUrl;
+      
+      print(urlString);
       Response response =
       await baseAPI.get(path, queryParameters: queryParameters);
       return response;

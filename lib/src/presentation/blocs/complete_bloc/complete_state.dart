@@ -3,7 +3,7 @@ import 'package:fluttertemplate/src/data/source/local/models/todo_isar.dart';
 
 abstract class CompleteState extends Equatable {}
 class CompleteInitial extends CompleteState {
-  final List<TodoIsar>? items;
+  final List<TodoIsar?>? items;
 
   CompleteInitial({this.items});
 

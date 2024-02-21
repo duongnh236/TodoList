@@ -106,7 +106,7 @@ void main() {
       when(mockHomeUseCase.saveTodoItemsLocal(any))
           .thenAnswer((_) => Future.value(false));
       await homeCubit.handleTodoList(index: 0);
-      expect(homeCubit.items![0].isChecked, false);
+      expect(homeCubit.items[0]!.isChecked, false);
     });
   });
 

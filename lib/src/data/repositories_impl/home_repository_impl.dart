@@ -14,15 +14,15 @@ class HomeRepositoryImpl extends HomeRepository {
   final HomeService homeService;
   final IsarService isarService;
   @override
-  Future<List<TodoIsar>> getTodoItemsLocal() async {
-    final List<TodoIsar> todoItems = await isarService.getAll<TodoIsar>();
-    final List<TodoIsar> todoEntities = todoItems.map((e) => TodoIsar(name: e.name, isChecked: e.isChecked)).toList();
+  Future<List<TodoIsar?>> getTodoItemsLocal() async {
+    final List<TodoIsar?> todoItems = await isarService.getAll<TodoIsar>();
+    final List<TodoIsar> todoEntities = todoItems.map((e) => TodoIsar(name: e!.name, isChecked: e.isChecked)).toList();
     return todoEntities;
   }
 
   @override
-  Future<bool> saveTodoItemsLocal(List<TodoIsar> items) async  {
-    final List<TodoIsar> _items = items.map((e) => TodoIsar()..isChecked = e.isChecked
+  Future<bool> saveTodoItemsLocal(List<TodoIsar?> items) async  {
+    final List<TodoIsar> _items = items.map((e) => TodoIsar()..isChecked = e!.isChecked
                                                                         ..name = e.name).toList();
     await isarService.saveList<TodoIsar>(_items);
     return Future.value(true);

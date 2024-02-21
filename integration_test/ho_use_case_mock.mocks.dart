@@ -60,18 +60,18 @@ class MockHoUseCaseMock extends _i1.Mock implements _i3.HoUseCaseMock {
       ) as _i2.HomeRepository);
 
   @override
-  _i4.Future<List<_i5.TodoIsar>> getTodoItemsLocal() => (super.noSuchMethod(
+  _i4.Future<List<_i5.TodoIsar?>> getTodoItemsLocal() => (super.noSuchMethod(
         Invocation.method(
           #getTodoItemsLocal,
           [],
         ),
-        returnValue: _i4.Future<List<_i5.TodoIsar>>.value(<_i5.TodoIsar>[]),
+        returnValue: _i4.Future<List<_i5.TodoIsar?>>.value(<_i5.TodoIsar?>[]),
         returnValueForMissingStub:
-            _i4.Future<List<_i5.TodoIsar>>.value(<_i5.TodoIsar>[]),
-      ) as _i4.Future<List<_i5.TodoIsar>>);
+            _i4.Future<List<_i5.TodoIsar?>>.value(<_i5.TodoIsar?>[]),
+      ) as _i4.Future<List<_i5.TodoIsar?>>);
 
   @override
-  _i4.Future<bool> saveTodoItemsLocal(List<_i5.TodoIsar>? items) =>
+  _i4.Future<bool> saveTodoItemsLocal(List<_i5.TodoIsar?>? items) =>
       (super.noSuchMethod(
         Invocation.method(
           #saveTodoItemsLocal,

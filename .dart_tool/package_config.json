@@ -338,6 +338,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "http",
+      "rootUri": "file:///C:/Users/nguyen.hai-duong1/AppData/Local/Pub/Cache/hosted/pub.dev/http-1.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
       "name": "http_multi_server",
       "rootUri": "file:///C:/Users/nguyen.hai-duong1/AppData/Local/Pub/Cache/hosted/pub.dev/http_multi_server-3.2.1",
       "packageUri": "lib/",
@@ -470,6 +476,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "package_info_plus",
+      "rootUri": "file:///C:/Users/nguyen.hai-duong1/AppData/Local/Pub/Cache/hosted/pub.dev/package_info_plus-5.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "package_info_plus_platform_interface",
+      "rootUri": "file:///C:/Users/nguyen.hai-duong1/AppData/Local/Pub/Cache/hosted/pub.dev/package_info_plus_platform_interface-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "path",
       "rootUri": "file:///C:/Users/nguyen.hai-duong1/AppData/Local/Pub/Cache/hosted/pub.dev/path-1.8.3",
       "packageUri": "lib/",
@@ -570,6 +588,18 @@
       "rootUri": "file:///C:/Users/nguyen.hai-duong1/AppData/Local/Pub/Cache/hosted/pub.dev/retrofit_generator-7.0.8",
       "packageUri": "lib/",
       "languageVersion": "2.19"
+    },
+    {
+      "name": "sentry",
+      "rootUri": "file:///C:/Users/nguyen.hai-duong1/AppData/Local/Pub/Cache/hosted/pub.dev/sentry-7.16.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "sentry_flutter",
+      "rootUri": "file:///C:/Users/nguyen.hai-duong1/AppData/Local/Pub/Cache/hosted/pub.dev/sentry_flutter-7.16.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
     },
     {
       "name": "shared_preferences",
@@ -674,6 +704,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "sprintf",
+      "rootUri": "file:///C:/Users/nguyen.hai-duong1/AppData/Local/Pub/Cache/hosted/pub.dev/sprintf-7.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "stack_trace",
       "rootUri": "file:///C:/Users/nguyen.hai-duong1/AppData/Local/Pub/Cache/hosted/pub.dev/stack_trace-1.11.1",
       "packageUri": "lib/",
@@ -752,6 +788,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "uuid",
+      "rootUri": "file:///C:/Users/nguyen.hai-duong1/AppData/Local/Pub/Cache/hosted/pub.dev/uuid-4.3.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "vector_math",
       "rootUri": "file:///C:/Users/nguyen.hai-duong1/AppData/Local/Pub/Cache/hosted/pub.dev/vector_math-2.1.4",
       "packageUri": "lib/",
@@ -824,7 +866,7 @@
       "languageVersion": "2.17"
     }
   ],
-  "generated": "2024-02-06T04:33:25.565563Z",
+  "generated": "2024-02-20T08:51:59.447924Z",
   "generator": "pub",
   "generatorVersion": "3.2.3"
 }

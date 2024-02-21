@@ -9,10 +9,10 @@ class HomeUseCase {
   HomeUseCase(this.homeRepository);
   final HomeRepository homeRepository;
 
-  Future<List<TodoIsar>> getTodoItemsLocal() async {
+  Future<List<TodoIsar?>> getTodoItemsLocal() async {
     return await homeRepository.getTodoItemsLocal();
   }
-  Future<bool> saveTodoItemsLocal(List<TodoIsar> items) async {
+  Future<bool> saveTodoItemsLocal(List<TodoIsar?> items) async {
     return await homeRepository.saveTodoItemsLocal(items);
   }
   Future<bool> isHasData() async {

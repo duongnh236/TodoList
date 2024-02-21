@@ -6,8 +6,8 @@ class CompleteCubit extends Cubit<CompleteState> {
   CompleteCubit() : super(CompleteInitial());
 
 
-  void getItems({List<TodoIsar>? items}) {
-    final List<TodoIsar> _items = items!.where((element) => element.isChecked == true).toList();
+  void getItems({List<TodoIsar?>? items}) {
+    final List<TodoIsar?> _items = items!.where((element) => element!.isChecked == true).toList();
     emit(CompleteInitial(items: _items));
   }
 

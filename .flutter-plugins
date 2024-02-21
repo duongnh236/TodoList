@@ -1,11 +1,13 @@
 # This is a generated file; do not edit or check into version control.
 integration_test=D:\\Software\\flutter\\packages\\integration_test\\
 isar_flutter_libs=C:\\Users\\nguyen.hai-duong1\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\isar_flutter_libs-3.1.0+1\\
+package_info_plus=C:\\Users\\nguyen.hai-duong1\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\package_info_plus-5.0.1\\
 path_provider=C:\\Users\\nguyen.hai-duong1\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\path_provider-2.1.2\\
 path_provider_android=C:\\Users\\nguyen.hai-duong1\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\path_provider_android-2.2.2\\
 path_provider_foundation=C:\\Users\\nguyen.hai-duong1\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\path_provider_foundation-2.3.2\\
 path_provider_linux=C:\\Users\\nguyen.hai-duong1\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\path_provider_linux-2.2.1\\
 path_provider_windows=C:\\Users\\nguyen.hai-duong1\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\path_provider_windows-2.2.1\\
+sentry_flutter=C:\\Users\\nguyen.hai-duong1\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\sentry_flutter-7.16.1\\
 shared_preferences=C:\\Users\\nguyen.hai-duong1\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\shared_preferences-2.2.2\\
 shared_preferences_android=C:\\Users\\nguyen.hai-duong1\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\shared_preferences_android-2.2.1\\
 shared_preferences_foundation=C:\\Users\\nguyen.hai-duong1\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\shared_preferences_foundation-2.3.5\\

@@ -6,8 +6,8 @@ import 'package:fluttertemplate/src/presentation/blocs/incomplete_bloc/incomplet
 class IncompleteCubit extends Cubit<IncompleteState> {
   IncompleteCubit() : super(IncompleteInitial());
 
-  void getItems({List<TodoIsar>? items}) {
-    final List<TodoIsar> _items = items!.where((element) => element.isChecked == false).toList();
+  void getItems({List<TodoIsar?>? items}) {
+    final List<TodoIsar?> _items = items!.where((element) => element!.isChecked == false).toList();
     emit(IncompleteInitial(items: _items));
   }
 }

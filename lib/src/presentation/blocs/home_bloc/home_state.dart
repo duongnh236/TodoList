@@ -3,13 +3,13 @@ import 'package:fluttertemplate/src/data/source/local/models/todo_isar.dart';
 
  class HomeState extends Equatable{
    // final bool? isCheck;
-   final  List<TodoIsar>? items;
+   final  List<TodoIsar?>? items;
    const HomeState({ this.items});
 
 
    HomeState copyWith({
     // bool? isCheck,
-    List<TodoIsar>? items,
+    List<TodoIsar?>? items,
   }) {
     return HomeState(
       // isCheck: isCheck ?? this.isCheck,
@@ -37,7 +37,7 @@ class HomeInitialState extends HomeState {
 
 class HomeErrorState extends HomeState {
   final String errorMesg;
-  final List<TodoIsar> items;
+  final List<TodoIsar?> items;
 
    HomeErrorState(this.errorMesg, this.items);
 

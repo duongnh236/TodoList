@@ -42,7 +42,7 @@ class _CompletePageState extends State<CompletePage> with AutomaticKeepAliveClie
 
   @override
   void initState() {
-    final List<TodoIsar> _items = context.read<HomeCubit>().items!;
+    final List<TodoIsar?> _items = context.read<HomeCubit>().items!;
     context.read<CompleteCubit>().getItems(items: _items);
     super.initState();
   }
@@ -57,7 +57,7 @@ class _CompletePageState extends State<CompletePage> with AutomaticKeepAliveClie
         if (state is CompleteInitial ) {
           return Center(
             child: ListView.builder(itemBuilder: (BuildContext context, int index) {
-              return _buildItem(state.items![index], (index) {
+              return _buildItem(state.items![index]!, (index) {
               }, index);
             }, itemCount: state.items!.length),
             key: const Key('ListView-CompletePage'),

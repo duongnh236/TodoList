@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class InputTaskDialog extends StatefulWidget {
-  final Function(String taskName)? tappedSave;
+   late Function(String taskName) tappedSave;
 
-  const InputTaskDialog({Key? key, this.tappedSave}) : super(key: key);
+   InputTaskDialog({super.key, required this.tappedSave});
 
   @override
   State<InputTaskDialog> createState() => _InputTaskDialogState();
@@ -16,6 +16,7 @@ class _InputTaskDialogState extends State<InputTaskDialog> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0)), //this right here
       child: SizedBox(
@@ -47,8 +48,9 @@ class _InputTaskDialogState extends State<InputTaskDialog> {
                 width: 320.0,
                 decoration: const BoxDecoration(color: Colors.transparent),
                 child: ElevatedButton(
+                  
                   onPressed: () {
-                    if (widget.tappedSave != null) {
+                    // if (widget.tappedSave != null) {
                       if (_textEditingController.text.trim().isEmpty == false) {
                         widget.tappedSave!(_textEditingController.text);
                         isErrorText = false;
@@ -58,7 +60,7 @@ class _InputTaskDialogState extends State<InputTaskDialog> {
                           isErrorText = true;
                         });
                       }
-                    }
+                    // }
                   },
                   child: const Text(
                     "Save",

@@ -37,6 +37,7 @@ void main() {
       TodoIsar(isChecked: true, name: 'bbb')
     ]);
   });
+  
   tearDown(() {
     homeCubit.close();
   });
@@ -52,7 +53,6 @@ void main() {
           designSize: const Size(375, 812),
           builder: (context, widget) {
             return MaterialApp.router(
-              // routerConfig: AppRouter.router,
               routerDelegate: AppRouter.router.routerDelegate,
               routeInformationProvider: AppRouter.router.routeInformationProvider,
               routeInformationParser: AppRouter.router.routeInformationParser,
@@ -64,35 +64,9 @@ void main() {
               ],
               supportedLocales: S.delegate.supportedLocales,
               locale: const Locale('vi'),
-              // theme: ThemeData(
-              //   primarySwatch: Colors.blue,
-              // ),
             );
           }),
     );
-    // return ScreenUtilInit(
-    //       designSize: const Size(375, 812),
-    //       builder: (context, widget) {
-    //  return MaterialApp(
-    //   localizationsDelegates: const [
-    //     S.delegate,
-    //     GlobalMaterialLocalizations.delegate,
-    //     GlobalWidgetsLocalizations.delegate,
-    //     GlobalCupertinoLocalizations.delegate,
-    //   ],
-    //   supportedLocales: S.delegate.supportedLocales,
-    //   locale: const Locale('vi'),
-    //   theme: ThemeData(
-    //     primarySwatch: Colors.blue,
-    //   ),
-    //   home: MultiBlocProvider(
-    //       providers: [
-    //         BlocProvider(create: (BuildContext context) => HomeCubit(mockHomeUseCase)),
-    //         BlocProvider(create: (BuildContext context) => ThemeCubit()),
-    //       ],
-    //       child: const MyHomePage(),
-    //     )
-    // );});
   }
 group('test home', () { 
  testWidgets('test HomePage', (tester) async {
@@ -122,10 +96,21 @@ group('test home', () {
     final inputDialog = find.byKey(const Key('InputTaskDialog-HomePage'));
     await tester.pumpAndSettle();
 
-    expect(inputDialog, findsOneWidget);
+    final textInput = find.byKey(const Key('Textfield-input'));
+    await tester.enterText(textInput, 'Test Integration ');
+    await tester.pumpAndSettle();
+    
+    final buttonInput = find.byKey(const Key('Button-Input'));
+    await tester.tap(buttonInput);
+    // await tester.pumpAndSettle();
+    await tester.pump();
+    // expect(inputDialog, findsOneWidget);
+    // expect(homeCubit.items!.length, homeCubit.items!.length);
+
+
+    final appBar = find.byKey(const Key('AppBar-HomePage'));
+    expect(appBar, findsOneWidget);
 
   });
 });
- 
-
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -11,15 +13,30 @@ import 'package:fluttertemplate/src/presentation/blocs/home_bloc/home_cubit.dart
 import 'package:fluttertemplate/src/presentation/blocs/incomplete_bloc/incomplete_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/login_cubit/login_cubit.dart';
 import 'package:fluttertemplate/src/presentation/blocs/theme_cubit/theme_dart_cubit.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'generated/l10n.dart';
 
 Future<void> main()  async {
 
-  WidgetsFlutterBinding.ensureInitialized();
-  await setup();
-  // await getIt.get<LocalDataSource>().initialize();
-  await DatabaseUtil.initDatabase();
-  runApp(const MyApp());
+
+  runZonedGuarded(() async {
+    await SentryFlutter.init((option) async {
+      //'https://e85b375ffb9f43cf8bdf9787768149e0@o447951.ingest.sentry.io/5428562'
+      option.dsn = 'https://afdebdd102f28947642b71c3cb21b3c5@o4506771210240000.ingest.sentry.io/4506771216531456';
+      option.tracesSampleRate = 1.0;
+          WidgetsFlutterBinding.ensureInitialized();
+      await setup();
+      // await getIt.get<LocalDataSource>().initialize();
+      await DatabaseUtil.initDatabase();
+
+    }, appRunner: () => runApp(const MyApp()));
+
+  }, (exception, stackTrace) async {
+    await Sentry.captureException(exception, stackTrace: stackTrace);
+   });
+
+
+  
 }
 
 class MyApp extends StatelessWidget {

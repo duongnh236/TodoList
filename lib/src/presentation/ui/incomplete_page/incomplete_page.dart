@@ -7,7 +7,6 @@ import 'package:fluttertemplate/src/presentation/blocs/incomplete_bloc/incomplet
 import 'package:fluttertemplate/src/presentation/blocs/incomplete_bloc/incomplete_state.dart';
 
 class InCompletePage extends StatefulWidget {
-
   const InCompletePage({Key? key}) : super(key: key);
 
   @override
@@ -15,9 +14,8 @@ class InCompletePage extends StatefulWidget {
 }
 
 class _InCompletePageState extends State<InCompletePage> {
-
-
-  Widget _buildItem(TodoIsar toDoItemEntity, Function(int index) ontap, int index) {
+  Widget _buildItem(
+      TodoIsar toDoItemEntity, Function(int index) ontap, int index) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       height: 50,
@@ -31,12 +29,14 @@ class _InCompletePageState extends State<InCompletePage> {
               ontap(index);
             },
             child: Icon(
-              toDoItemEntity.isChecked ?? false ? Icons.check_box : Icons.check_box_outline_blank_outlined,
+              toDoItemEntity.isChecked ?? false
+                  ? Icons.check_box
+                  : Icons.check_box_outline_blank_outlined,
               size: 30.0,
-              color: toDoItemEntity.isChecked ?? false ?  Colors.blue : Colors.blue,
+              color:
+                  toDoItemEntity.isChecked ?? false ? Colors.blue : Colors.blue,
             ),
           )
-
         ],
       ),
     );
@@ -44,7 +44,7 @@ class _InCompletePageState extends State<InCompletePage> {
 
   @override
   void initState() {
-    final List<TodoIsar> _items = context.read<HomeCubit>().items!;
+    final List<TodoIsar?> _items = context.read<HomeCubit>().items;
     context.read<IncompleteCubit>().getItems(items: _items);
     super.initState();
   }
@@ -56,16 +56,17 @@ class _InCompletePageState extends State<InCompletePage> {
         key: const Key('AppBar-InCompletePage'),
         title: const Text("InComplete"),
       ),
-      body: BlocBuilder<IncompleteCubit, IncompleteState>(builder: ( _, state) {
-        if (state is IncompleteInitial ) {
+      body: BlocBuilder<IncompleteCubit, IncompleteState>(builder: (_, state) {
+        if (state is IncompleteInitial) {
           return Center(
-            child: ListView.builder(itemBuilder: (BuildContext context, int index) {
-              return _buildItem(state.items![index], (index) {
-              }, index);
-            }, itemCount: state.items!.length),
             key: const Key('ListView-InCompletePage'),
+            child: ListView.builder(
+                itemBuilder: (BuildContext context, int index) {
+                  return _buildItem(state.items![index]!, (index) {}, index);
+                },
+                itemCount: state.items!.length),
           );
-        } else  {
+        } else {
           return Container();
         }
       }), // This trailing comma makes auto-formatting nicer for build methods.

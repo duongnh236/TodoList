@@ -5,7 +5,7 @@ import '../../../domain/entities/todo_item_entity.dart';
 
 abstract class IncompleteState extends Equatable {}
 class IncompleteInitial extends IncompleteState {
-  final List<TodoIsar>? items;
+  final List<TodoIsar?>? items;
 
   IncompleteInitial({this.items});
 
