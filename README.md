@@ -18,4 +18,4 @@ Isar tutorial:
 
 To add integration_test folder
 - create file build.yaml 
-- command driver test : flutter driver \ --driver=test_driver/integration_test.dart \ --target=integration_test/ho_use_case_mock.dart \ -d emulator-5554
+- command driver test : flutter test .\integration_test\ho_use_case_mock.dart

@@ -63,6 +63,7 @@ class MyHomePageState extends State<MyHomePage>
           key: const Key('AppBar-HomePage'),
           title: Text(S.of(context).helloWorld('Dương', 'Nguyễn Hải ')),
           actions: <Widget>[
+            
             Container(
               color: Colors.red,
               child: TextButton(
@@ -142,15 +143,18 @@ class ListViewTest extends StatefulWidget {
 class _ListViewTestState extends State<ListViewTest> {
   Widget _buildItem(
       TodoIsar toDoItemEntity, Function(int index) ontap, int index) {
+      
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       height: 50.h,
       width: 200.w,
+      
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Expanded(child: Text(toDoItemEntity.name ?? '')),
           InkWell(
+            
             onTap: () {
               ontap(index);
             },

@@ -18,7 +18,7 @@ import 'generated/l10n.dart';
 
 Future<void> main()  async {
 
-
+  
   runZonedGuarded(() async {
     await SentryFlutter.init((option) async {
       //'https://e85b375ffb9f43cf8bdf9787768149e0@o447951.ingest.sentry.io/5428562'

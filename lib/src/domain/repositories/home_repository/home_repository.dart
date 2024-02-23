@@ -8,4 +8,5 @@ abstract class HomeRepository {
   Future<bool> saveTodoItemsLocal(List<TodoIsar?> items);
   Future<bool> isHasData();
   Future<Either<Failure, Activity>> testApi();
+  
 }

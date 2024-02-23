@@ -37,7 +37,7 @@ class HomeCubit extends Cubit<HomeState> {
       emit(HomeErrorState('please try again', items!));
     }
   }
-
+  
   Future<void> createTask({String? taskName}) async {
     final TodoIsar todoTask = TodoIsar(isChecked: false, name: taskName ?? '');
     items!.add(todoTask);
